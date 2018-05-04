@@ -3,7 +3,7 @@ from django.http import HttpResponse
 
 from django.contrib.auth import authenticate, login, logout
 from .forms import SignUpForm, SignInForm
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm, PasswordResetForm
 
 
 # Create your views here.
@@ -45,3 +45,14 @@ def signin(request):
 def signout(request):
     logout(request)
     return redirect('signup')
+
+
+def password_change(request):
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            form = PasswordChangeForm(request.user, data=request.POST)
+            if form.is_valid():
+                form.save()
+                return redirect('signup')
+        form = PasswordChangeForm(request.user)
+        return render(request, 'auth/password_change.html', {'form': form})

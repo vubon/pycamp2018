@@ -12,21 +12,22 @@
                 <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
                     {% csrf_token %}
                     <div class="card-block">
-                        <div class="form-group row">
-                            <label class="col-md-3 form-control-label" for="event-name">Event Name</label>
-                            <div class="col-md-9">
-                                <input id="event-name" name="event-name" class="form-control"
-                                       placeholder="Enter event name"/>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-md-3 form-control-label" for="event-description">Description</label>
-                            <div class="col-md-9">
-                            <textarea id="event-description" name="event-description" rows="3" class="form-control"
-                                      placeholder="Description of event.."></textarea>
-                            </div>
-                        </div>
-                    </div>
+                        {{ form }}
+{#                        <div class="form-group row">#}
+{#                            <label class="col-md-3 form-control-label" for="event-name">Event Name</label>#}
+{#                            <div class="col-md-9">#}
+{#                                <input id="event-name" name="event-name" class="form-control"#}
+{#                                       placeholder="Enter event name"/>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                        <div class="form-group row">#}
+{#                            <label class="col-md-3 form-control-label" for="event-description">Description</label>#}
+{#                            <div class="col-md-9">#}
+{#                            <textarea id="event-description" name="event-description" rows="3" class="form-control"#}
+{#                                      placeholder="Description of event.."></textarea>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
                     <div class="card-footer">
                         <button type="submit" name="save-event" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> Save
                         </button>

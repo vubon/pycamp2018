@@ -1,6 +1,7 @@
 <header class="app-header navbar">
     <button class="navbar-toggler mobile-sidebar-toggler d-lg-none" type="button">☰</button>
-    <a class="navbar-brand" href="#"></a>
+    <a class="navbar-brand" href="{% url 'signup' %}"></a>
+    {% if user.is_authenticated %}
     <ul class="nav navbar-nav d-md-down-none">
         <li class="nav-item">
             <a class="nav-link navbar-toggler sidebar-toggler" href="#">☰</a>
@@ -65,6 +66,16 @@
         <li class="nav-item d-md-down-none">
             <a class="nav-link navbar-toggler aside-menu-toggler" href="#">☰</a>
         </li>
-
     </ul>
+    {% else %}
+    <ul class="nav navbar-nav ml-auto">
+        <li class="nav-item px-3">
+            <a class="nav-link" href="{% url 'signin' %}">SignIn <i class="fa fa-sign-in"></i></a>
+        </li>
+        <li class="nav-item px-3">/</li>
+        <li class="nav-item px-3">
+            <a class="nav-link" href="{% url 'signup' %}">SignUp</a>
+        </li>
+    </ul>
+    {% endif %}
 </header>

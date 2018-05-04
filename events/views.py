@@ -15,3 +15,5 @@ class EventCreateView(View):
 
     def post(self, request):
         pass
+class EventTrainer(View):
+    pass

@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 ]
 THIRD_PARTY_APPS = [
     'django_extensions',
+    'widget_tweaks',
 ]
 
 LOCAL_APPS = [

@@ -7,6 +7,10 @@ from django.shortcuts import render
 from django.views import View
 
 
+class MainDashBoardView(View):
+    def get(self, request):
+        return render(request, 'index.html')
+
 class EventCreateView(View):
     template_name = 'components-forms.html'
 

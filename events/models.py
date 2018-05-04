@@ -10,5 +10,6 @@ class Event(models.Model):
     address = models.TextField(max_length=500)
 
 
+
     def __str__(self):
         return self.event_name

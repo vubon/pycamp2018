@@ -12,7 +12,7 @@
                 <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
                     {% csrf_token %}
                     <div class="card-block">
-                        {{ form }}
+                        {{ form.as_p }}
 {#                        <div class="form-group row">#}
 {#                            <label class="col-md-3 form-control-label" for="event-name">Event Name</label>#}
 {#                            <div class="col-md-9">#}
@@ -27,7 +27,7 @@
 {#                                      placeholder="Description of event.."></textarea>#}
 {#                            </div>#}
 {#                        </div>#}
-{#                    </div>#}
+                    </div>
                     <div class="card-footer">
                         <button type="submit" name="save-event" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> Save
                         </button>

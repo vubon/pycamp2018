@@ -1,5 +1,5 @@
 from django.db import models
-from userprofile.mdoels import  OrganizationProfile
+from userprofile.models import  OrganizationProfile,PersonalProfile
 # Create your models here.
 class JobPostBasic(models.Model):
     organization_id = models.ForeignKey(OrganizationProfile,on_delete=models.CASCADE)
@@ -11,14 +11,21 @@ class JobPostBasic(models.Model):
     vacancy = models.PositiveIntegerField()
     deadline = models.DateField()
 
-    class Meta:
-        abstract = True
+
 
     def __str__(self):
         return self.job_title
 
 
-class JobPostDetails(JobPostBasic):
+class JobPostDetails(models.Model):
+    job_id = models.ForeignKey(JobPostBasic,on_delete=models.CASCADE)
     description = models.TextField()
     application_process = models.TextField()
     sreening_details = models.TextField()
+
+
+class JobApplicant(models.Model):
+    job_id = job_id = models.ForeignKey(JobPostBasic,on_delete=models.CASCADE)
+    applicant_id = models.ForeignKey(PersonalProfile,on_delete=models.CASCADE)
+    selection_confiramtion= models.BooleanField(default=False)
+    call_for_interview = models.BooleanField(default=False)

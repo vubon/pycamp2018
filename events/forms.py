@@ -1,11 +1,11 @@
 from django import forms
 
-from .models import Event
+from .models import EventBasic
 
 
 class EventForm(forms.ModelForm):
     class Meta:
-        model = Event
+        model = EventBasic
         fields = '__all__'
         labels = {
             'event_name': 'Event Name',

@@ -1,0 +1,67 @@
+{% extends "base_home.html" %}
+{% load widget_tweaks %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-10">
+        <div class="card">
+            <div class="card-header">
+                <strong>Sign In</strong>
+            </div>
+            <form method="post" class="form-horizontal">
+                {% csrf_token %}
+                <div class="card-block">
+                    {% if form.non_field_errors %}
+                    <div class="alert alert-danger" role="alert">
+                        {% for error in form.non_field_errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+
+                    {% for field in form.visible_fields %}
+                            <div class="form-group row">
+                                <label for="{{ field.auto_id }}" class="col-md-3 col-form-label">{{ field.label_tag }}</label>
+                                {% if form.is_bound %}
+                                    {% if field.errors %}
+                                        {% render_field field class="form-control is-invalid" %}
+                                        {% for error in field.errors %}
+                                            <div class="invalid-feedback">
+                                                {{ error }}
+                                            </div>
+                                        {% endfor %}
+                                    {% else %}
+                                            {% render_field field class="form-control is-valid" %}
+                                    {% endif %}
+                                {% else %}
+                                   <div class="col-md-6">
+                                     {% render_field field class="form-control" %}
+                                   </div>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                <!--/.row-->
+                <button type="submit" class="btn btn-success">Sign In</button>
+                    <hr>
+                <p><a href="#">Forgot Password?</a></p>
+            </form>
+        </div>
+    </div>
+</div>
+{% comment %} <form class="form-signin" method="post">
+    {% csrf_token %}
+    {% for field in form %}
+      <p>
+        {{ field.label_tag }}<br>
+        {{ field }}
+        {% if field.help_text %}
+          <small style="color: grey">{{ field.help_text }}</small>
+        {% endif %}
+        {% for error in field.errors %}
+          <p style="color: red">{{ error }}</p>
+        {% endfor %}
+      </p>
+    {% endfor %}
+    <button type="submit" class="btn btn-success">Sign In</button>
+</form> {% endcomment %}
+{% endblock %}

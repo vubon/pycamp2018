@@ -44,6 +44,7 @@ THIRD_PARTY_APPS = [
 
 LOCAL_APPS = [
     'events',
+    'user',
 ]
 
 INSTALLED_APPS += THIRD_PARTY_APPS + LOCAL_APPS

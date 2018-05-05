@@ -9,6 +9,8 @@ def home(request):
 
 
 def signup(request):
+    if request.user.is_authenticated:
+        return redirect('home')
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         print(form)
@@ -25,6 +27,8 @@ def signup(request):
 
 
 def signin(request):
+    if request.user.is_authenticated:
+        return redirect('home')
     if request.method == 'POST':
         form = SignInForm(data=request.POST)
         print(form)
@@ -46,6 +50,8 @@ def signout(request):
 
 def password_change(request):
     if request.user.is_authenticated:
+        return redirect('home')
+    if request.user.is_authenticated:
         if request.method == 'POST':
             form = PasswordChangeForm(request.user, data=request.POST)
             if form.is_valid():
@@ -57,10 +63,13 @@ def password_change(request):
 
 def password_reset(request):
     if request.method == 'POST':
-        form = PasswordResetForm(data=request.POST)
+        form = PasswordResetForm(request.POST)
         if form.is_valid():
             form.save(
-                'Password reset',
-                'Password reset mail body here.',
-
+                request=request,
+                from_email='from@example.com',
+                email_template_name='registration/password_reset_body.html'
             )
+            return redirect('home')
+    form = PasswordResetForm(None)
+    return render(request, 'auth/password_reset.html', {'form': form})

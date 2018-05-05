@@ -1,13 +1,22 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import PasswordChangeForm, PasswordResetForm
+from django.contrib.auth.decorators import user_passes_test
 
 from .forms import SignUpForm, SignInForm
+
+
+# redirect logged in user to home
+def redirect_authenticated_user(user):
+    if user.is_authenticated:
+        return redirect('home')
+
 
 def home(request):
     return render(request, 'home.html')
 
 
+@user_passes_test(redirect_authenticated_user)
 def signup(request):
     if request.user.is_authenticated:
         return redirect('home')
@@ -26,6 +35,7 @@ def signup(request):
     return render(request, 'auth/signup.html', {'form': form})
 
 
+@user_passes_test(redirect_authenticated_user)
 def signin(request):
     if request.user.is_authenticated:
         return redirect('home')

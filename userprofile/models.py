@@ -49,7 +49,7 @@ class PersonalProfile(UserProfileBasic):
 class OrganizationProfile(UserProfileBasic):
     organization_name = models.CharField(max_length=100)
     is_training_instute = models.BooleanField(default=False)
-    industry_type = JSONField(null=True, blank=True) # I didn't write Taxonomy Model yet. So, just for now I write jsonfield. Later will add taxonomy Model
+    industry_type = JSONField(null=True, blank=True)
     website = models.URLField(max_length=20)
     founded_on = models.DateField()
     company_size = JSONField(null=True, blank=True)

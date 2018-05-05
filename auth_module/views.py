@@ -56,3 +56,14 @@ def password_change(request):
                 return redirect('signup')
         form = PasswordChangeForm(request.user)
         return render(request, 'auth/password_change.html', {'form': form})
+
+
+def password_reset(request):
+    if request.method == 'POST':
+        form = PasswordResetForm(data=request.POST)
+        if form.is_valid():
+            form.save(
+                'Password reset',
+                'Password reset mail body here.',
+
+            )

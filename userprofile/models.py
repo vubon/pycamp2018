@@ -1,3 +1,4 @@
+import uuid
 from django.db import models
 from django.contrib.postgres.fields import JSONField
 from django.contrib.auth.models import User
@@ -10,7 +11,7 @@ class UserProfileBasic(models.Model):
     date_joined = models.DateTimeField(auto_now_add=True)
     status = models.BooleanField(default=True)
     gravatar = models.CharField(max_length=100)
-    guid = models.CharField(max_length=40)
+    guid = models.UUIDField(default=uuid.uuid4, editable=False)
 
     class Meta:
         abstract = True

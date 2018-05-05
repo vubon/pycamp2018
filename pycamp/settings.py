@@ -40,8 +40,11 @@ THIRD_PARTY_APPS = [
 ]
 
 LOCAL_APPS = [
+    'userprofile',
     'events',
-    'user',
+    'jobpost',
+    'recommendation',
+    'auth_module',
 ]
 
 INSTALLED_APPS += THIRD_PARTY_APPS + LOCAL_APPS
@@ -90,6 +93,12 @@ DATABASES = {
         'PORT': '5432',
     }
 }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
@@ -131,3 +140,6 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
+
+# TEST EMAIL
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

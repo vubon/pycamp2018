@@ -44,8 +44,10 @@ THIRD_PARTY_APPS = [
 ]
 
 LOCAL_APPS = [
+    'userprofile',
     'events',
-    'userprofile'
+    'jobpost',
+    'recommendation',
     'auth_module',
 ]
 
@@ -89,8 +91,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'pycamp',
-        'USER': 'jaki',
-        'PASSWORD': '101119',
+        'USER': 'postgres',
+        'PASSWORD': 'vubon',
         'HOST': 'localhost',
         'PORT': '5432',
     }

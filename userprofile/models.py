@@ -1,7 +1,7 @@
 import uuid
+from django.contrib.auth.models import User
 from django.db import models
 from django.contrib.postgres.fields import JSONField
-from django.contrib.auth.models import User
 
 
 class UserProfileBasic(models.Model):
@@ -12,8 +12,8 @@ class UserProfileBasic(models.Model):
     gravatar = models.CharField(max_length=100)
     guid = models.UUIDField(default=uuid.uuid4, editable=False)
 
-    class Meta:
-        abstract = True
+    # class Meta:
+    #     abstract = True
 
 
 class PersonalProfile(UserProfileBasic):
@@ -46,15 +46,16 @@ class PersonalProfile(UserProfileBasic):
     def __str__(self):
         return self.auth.first_name + ' ' + self.auth.last_name
 
+
 class OrganizationProfile(UserProfileBasic):
     organization_name = models.CharField(max_length=100)
-    is_training_instute = models.BooleanField(default=False)
+    is_training_institute = models.BooleanField(default=False)
     industry_type = JSONField(null=True, blank=True)
-    website = models.URLField(max_length=20)
+    website = models.URLField(max_length=100)
     founded_on = models.DateField()
     company_size = JSONField(null=True, blank=True)
     description = models.TextField(null=True, blank=True)
-    addtional_contact = models.TextField()
+    additional_contact = models.TextField()
     is_approved = models.BooleanField(default=False)
 
     def __str__(self):

@@ -36,3 +36,4 @@ class EventCreateView(SuccessMessageMixin, CreateView):
     #     else:
     #         return render(request, self.template_name, {"error": f.errors})
 
+

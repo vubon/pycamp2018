@@ -1,14 +1,11 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
-
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.forms import PasswordChangeForm, PasswordResetForm
+
 from .forms import SignUpForm, SignInForm
-from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm, PasswordResetForm
 
-
-# Create your views here.
-# def home(request):
-#     return render(request, 'base/home.html')
+def home(request):
+    return render(request, 'home.html')
 
 
 def signup(request):
@@ -37,14 +34,14 @@ def signin(request):
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
-                return redirect('signup')
+                return redirect('home')
     form = SignInForm()
     return render(request, 'auth/signin.html', {'form': form})
 
 
 def signout(request):
     logout(request)
-    return redirect('signup')
+    return redirect('home')
 
 
 def password_change(request):
@@ -53,7 +50,7 @@ def password_change(request):
             form = PasswordChangeForm(request.user, data=request.POST)
             if form.is_valid():
                 form.save()
-                return redirect('signup')
+                return redirect('home')
         form = PasswordChangeForm(request.user)
         return render(request, 'auth/password_change.html', {'form': form})
 

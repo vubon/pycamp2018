@@ -4,7 +4,6 @@ from django.contrib.postgres.fields import JSONField
 from userprofile.models import UserProfileBasic
 from events.models.event_basic import EventBasic
 
-
 class EventParticipant(EventBasic):
     participant_id = models.ForeignKey(
         UserProfileBasic,

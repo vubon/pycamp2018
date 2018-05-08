@@ -1,0 +1,3 @@
+from userprofile.models.user_profile_basic import UserProfileBasic
+from userprofile.models.personal_profile import PersonalProfile
+from userprofile.models.organization_profile import OrganizationProfile

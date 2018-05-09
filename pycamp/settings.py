@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+
 THIRD_PARTY_APPS = [
     'django_extensions',
     'widget_tweaks',
@@ -91,8 +92,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'pycamp',
-        'USER': 'shafik',
-        'PASSWORD': 'shafik',
+        'USER': 'jaki',
+        'PASSWORD': '101119',
         'HOST': 'localhost',
         'PORT': '5432',
     }

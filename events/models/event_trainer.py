@@ -32,3 +32,5 @@ class EventTrainer(EventBasic):
     )
     rating = JSONField(default={})
     status = models.BooleanField(default=True)
+
+    object = EventTrainerManager()

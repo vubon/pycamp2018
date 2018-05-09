@@ -10,5 +10,4 @@ class JobApplicantQuerySet(models.QuerySet):
         return self.all()
 
     def selected_applicant(self):
-        return self.filter(selection_confirmation='True')
-        
+        return self.filter(selection_confirmation=True)

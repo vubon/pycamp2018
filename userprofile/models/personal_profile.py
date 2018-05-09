@@ -2,6 +2,32 @@ from django.db import models
 from django.contrib.postgres.fields import JSONField
 
 from userprofile.models.user_profile_basic import UserProfileBasic
+from userprofile.models.personal_profile_queryset import PersonalProfileQuerySet
+
+
+class PersonalProfileManager(models.Manager):
+    """
+        Find Trainee or Regular  User
+        Find Trainer
+    """
+
+    def get_queryset(self):
+        return PersonalProfileQuerySet(self.model, using = self._db)
+
+    def regular_user(self):
+        """
+            return regular user / Trainee
+        """
+
+        return self.get_queryset().regular_user()
+
+    def trainer(self):
+        """
+            return trainer
+        """
+
+        return self.get_queryset().trainer()
+        
 
 class PersonalProfile(UserProfileBasic):
     GENDER_STATUS = (
@@ -29,6 +55,8 @@ class PersonalProfile(UserProfileBasic):
     current_organization = models.TextField(max_length=100)
     official_contact = models.TextField()
     reference = models.TextField()
+
+    object = PersonalProfileManager()
 
     def __str__(self):
         return self.auth.first_name + ' ' + self.auth.last_name

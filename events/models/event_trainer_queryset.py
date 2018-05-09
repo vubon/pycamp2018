@@ -7,4 +7,4 @@ class EventTrainerQuerySet(models.QuerySet):
     """
 
     def event_trainer(self):
-        return self.filter(status='True')
+        return self.filter(status=True)

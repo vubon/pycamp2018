@@ -22,18 +22,18 @@ class EventCreateView(SuccessMessageMixin, CreateView):
         event.save()
         return super(EventCreateView, self).form_valid(form)
 
-    # def get(self, request):
-    #     form = EventForm()
-    #     return render(request, self.template_name, {"form": form})
-    #
-    # def post(self, request):
-    #     f = EventForm(request.POST)
-    #     form = EventForm()
-    #     if f.is_valid():
-    #         f.save()
-    #         return render(request, self.template_name, {"form": form})
-    #     else:
-    #         return render(request, self.template_name, {"error": f.errors})
+    def get(self, request):
+        form = EventForm()
+        return render(request, self.template_name, {"form": form})
+
+    def post(self, request):
+        f = EventForm(request.POST)
+        form = EventForm()
+        if f.is_valid():
+            f.save()
+            return render(request, self.template_name, {"form": form})
+        else:
+            return render(request, self.template_name, {"error": f.errors})
 
 
 class EventArchiveView(TemplateView):

@@ -6,8 +6,8 @@ from events.models.event_basic import EventBasic
 
 class EventDetail(EventBasic):
     open_for_all = models.BooleanField(default=False)
-    screening_process = models.URLField(max_length=100)
-    registration_process = models.TextField(default='')
-    payment_process = models.URLField(max_length=150)
-    additional_fees = models.FloatField(null=True)
-    review_event_host = JSONField(default={})
+    screening_process = models.URLField(max_length=100, blank=True)
+    registration_process = models.TextField(default='', blank=True)
+    payment_process = models.URLField(max_length=150, blank=True)
+    additional_fees = models.FloatField(null=True, blank=True)
+    review_event_host = JSONField(default={}, blank=True)

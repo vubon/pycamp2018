@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import EventBasic
+from .models import EventBasic, EventDetail, EventTrainer, EventParticipant
 
 
 class EventForm(forms.ModelForm):

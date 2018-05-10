@@ -38,19 +38,19 @@ class EventBasicManager(models.Manager):
 
 class EventBasic(models.Model):
     # unique_event = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    title = models.CharField(max_length=50, default='')
+    title = models.CharField(max_length=50, default='', blank=False)
     start_date = models.DateField(auto_now_add=False, null=True)
     end_date = models.DateField(null=True, blank=True)
     registration_deadline = models.DateField(null=True, blank=True)
     description = models.TextField(blank=True)
-    banner = models.ImageField(storage=fs, null=True)
-    audienceT_type = JSONField(default={})
+    banner = models.ImageField(storage=fs, null=True, blank=True)
+    audienceT_type = JSONField(default={}, blank=True)
     max_audience = models.IntegerField(default=0)
-    venue = JSONField(default={})
-    venue_coordinate = JSONField(default={})
-    region = JSONField(default={})
-    currency = JSONField(default={})
-    registration_fee = models.FloatField(null=True)
+    venue = JSONField(default={}, blank=True)
+    venue_coordinate = JSONField(default={}, blank=True)
+    region = JSONField(default={}, blank=True)
+    currency = JSONField(default={}, blank=True)
+    registration_fee = models.FloatField(null=True, blank=True)
 
     objects = EventBasicManager()
 

@@ -15,7 +15,7 @@ class EventCreateView(SuccessMessageMixin, CreateView):
     form_class = EventForm
     template_name = 'event_templates/event_create.html'
     success_message = "Event has been created successfully"
-    success_url = '/event/create/'
+    success_url = 'event_templates/event_archive/'
 
     def form_valid(self, form):
         event = form.save(commit=False)
@@ -34,5 +34,13 @@ class EventCreateView(SuccessMessageMixin, CreateView):
     #         return render(request, self.template_name, {"form": form})
     #     else:
     #         return render(request, self.template_name, {"error": f.errors})
+
+
+class EventArchiveView(TemplateView):
+    template_name = 'event_templates/event_archive.html'
+
+
+class OrganizerProfileVew(TemplateView):
+    template_name = 'event_templates/organizer_profile.html'
 
 

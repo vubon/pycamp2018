@@ -18,6 +18,16 @@
 <!-- Plugins and scripts required by this views -->
 
 <!-- Custom scripts required by this view -->
+<script src="js/views/main.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+    {% if messages %}
+        {% for message in messages %}
+            <script>
+                toastr["{{ message.tags }}"]("{{ message }}");
+            </script>
+        {% endfor %}
+    {% endif %}
 {% comment %} <script src="{% static 'js/views/main.js' %}"></script>
 <script src="{% static 'js/views/charts.js' %}"></script>
 <script src="{% static 'js/views/widgets.js' %}"></script> {% endcomment %}

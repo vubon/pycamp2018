@@ -35,7 +35,6 @@ def signup(request):
     return render(request, 'auth/signup.html', {'form': form})
 
 
-@user_passes_test(redirect_authenticated_user)
 def signin(request):
     if request.user.is_authenticated:
         return redirect('home')

@@ -3,56 +3,130 @@
 
 {% block content %}
 
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header">
-                    Create <strong>event</strong>
-                </div>
-                <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
-                    {% csrf_token %}
-                    <div class="card-block">
-                        {#  {{ form.as_p }}#}
-                        {% if form.non_field_errors %}
-                            <div class="alert alert-danger" role="alert">
-                                {% for error in form.non_field_errors %}
-                                    {{ error }}
-                                {% endfor %}
-                            </div>
-                        {% endif %}
-
-                        {% for field in form.visible_fields %}
-                            <div class="form-group row">
-                                <label for="{{ field.auto_id }}" class="col-md-3 col-form-label">{{ field.label_tag }}</label>
-                                {% if form.is_bound %}
-                                    {% if field.errors %}
-                                         {% render_field field class="form-control is-invalid" %}
-                                        {% for error in field.errors %}
-                                            <div class="invalid-feedback">
-                                                {{ error }}
-                                            </div>
-                                        {% endfor %}
-                                    {% else %}
-                                            {% render_field field class="form-control is-valid" %}
-                                    {% endif %}
-                                {% else %}
-                                   <div class="col-md-6">
-                                     {% render_field field class="form-control" %}
-                                   </div>
-                                {% endif %}
-                            </div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                Create <strong>event</strong>
+            </div>
+            <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+                {% csrf_token %}
+                <div class="card-block">
+                    {# {{ form.as_p }}#}
+                    {% if form.non_field_errors %}
+                    <div class="alert alert-danger" role="alert">
+                        {% for error in basic_form.non_field_errors %}
+                        {{ error }}
                         {% endfor %}
                     </div>
-                    <div class="card-footer">
-                        <button type="submit" name="save-event" class="btn btn-sm btn-primary"><i
-                                class="fa fa-dot-circle-o"></i> Save
-                        </button>
-                        <button type="reset" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Reset</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    <!--/.row-->
+                    {% endif %}
+
+                    {% for field in basic_form.visible_fields %}
+                    <div class="form-group row">
+                        <label for="{{ field.auto_id }}" class="col-md-3 col-form-label">{{ field.label_tag }}</label>
+                        {% if form.is_bound %}
+                        {% if field.errors %}
+                        {% render_field field class="form-control is-invalid" %}
+                        {% for error in field.errors %}
+                        <div class="invalid-feedback">
+                            {{ error }}
+                        </div>
+                        {% endfor %}
+                        {% else %}
+                        {% render_field field class="form-control is-valid" %}
+                        {% endif %}
+                        {% else %}
+                        <div class="col-md-6">
+                            {% render_field field class="form-control" %}
+                        </div>
+                        {% endif %}
+                    </div><!-- end of form-group -->
+                    {% endfor %}
+
+                    <!-- end of basic_form -->
+
+                    {% for field in detail_form.visible_fields %}
+                    <div class="form-group row">
+                        <label for="{{ field.auto_id }}" class="col-md-3 col-form-label">{{ field.label_tag }}</label>
+                        {% if form.is_bound %}
+                        {% if field.errors %}
+                        {% render_field field class="form-control is-invalid" %}
+                        {% for error in field.errors %}
+                        <div class="invalid-feedback">
+                            {{ error }}
+                        </div>
+                        {% endfor %}
+                        {% else %}
+                        {% render_field field class="form-control is-valid" %}
+                        {% endif %}
+                        {% else %}
+                        <div class="col-md-6">
+                            {% render_field field class="form-control" %}
+                        </div>
+                        {% endif %}
+                    </div><!-- end of form-group -->
+                    {% endfor %}
+
+                    <!-- end of detail_form -->
+
+                    {% for field in participant_form.visible_fields %}
+                    <div class="form-group row">
+                        <label for="{{ field.auto_id }}" class="col-md-3 col-form-label">{{ field.label_tag }}</label>
+                        {% if form.is_bound %}
+                        {% if field.errors %}
+                        {% render_field field class="form-control is-invalid" %}
+                        {% for error in field.errors %}
+                        <div class="invalid-feedback">
+                            {{ error }}
+                        </div>
+                        {% endfor %}
+                        {% else %}
+                        {% render_field field class="form-control is-valid" %}
+                        {% endif %}
+                        {% else %}
+                        <div class="col-md-6">
+                            {% render_field field class="form-control" %}
+                        </div>
+                        {% endif %}
+                    </div><!-- end of form-group -->
+                    {% endfor %}
+
+                    <!-- end of participant_form -->
+
+                    {% for field in trainer_form.visible_fields %}
+                    <div class="form-group row">
+                        <label for="{{ field.auto_id }}" class="col-md-3 col-form-label">{{ field.label_tag }}</label>
+                        {% if form.is_bound %}
+                        {% if field.errors %}
+                        {% render_field field class="form-control is-invalid" %}
+                        {% for error in field.errors %}
+                        <div class="invalid-feedback">
+                            {{ error }}
+                        </div>
+                        {% endfor %}
+                        {% else %}
+                        {% render_field field class="form-control is-valid" %}
+                        {% endif %}
+                        {% else %}
+                        <div class="col-md-6">
+                            {% render_field field class="form-control" %}
+                        </div>
+                        {% endif %}
+                    </div><!-- end of form-group -->
+                    {% endfor %}
+
+                    <!-- end of trainer_form -->
+
+                </div><!-- end of card-block -->
+                <div class="card-footer">
+                    <button type="submit" name="save-event" class="btn btn-sm btn-primary"><i
+                            class="fa fa-dot-circle-o"></i> Save
+                    </button>
+                    <button type="reset" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Reset</button>
+                </div>
+            </form><!-- end of form -->
+        </div><!-- end of card -->
+    </div><!-- end of com-md-12 -->
+</div><!--/.row-->
 
 {% endblock %}

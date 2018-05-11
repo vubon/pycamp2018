@@ -5,6 +5,7 @@ from userprofile.models import UserProfileBasic
 from events.models.event_basic import EventBasic
 from events.models.event_trainer_queryset import EventTrainerQuerySet
 
+
 class EventTrainerManager(models.Manager):
     """
         get event trainer details
@@ -24,6 +25,7 @@ class EventTrainerManager(models.Manager):
 
 
 class EventTrainer(EventBasic):
+    # event_user = models.OneToOneField(EventBasic, on_delete=models.CASCADE, primary_key=True)
     trainer = models.ForeignKey(
         UserProfileBasic,
         on_delete=models.CASCADE,

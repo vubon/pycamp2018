@@ -38,6 +38,7 @@ class EventParticipantManager(models.Manager):
 
 
 class EventParticipant(EventBasic):
+    # event_user = models.OneToOneField(EventBasic, on_delete=models.CASCADE, primary_key=True)
     participant_id = models.ForeignKey(
         UserProfileBasic,
         on_delete=models.CASCADE,

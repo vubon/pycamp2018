@@ -1,8 +1,9 @@
 from django.contrib import admin
 
-from . models import EventDetail, EventTrainer, EventParticipant
+from . models import EventBasic, EventDetail, EventTrainer, EventParticipant
 
 # Register your models here.
+admin.site.register(EventBasic)
 admin.site.register(EventDetail)
 admin.site.register(EventTrainer)
 admin.site.register(EventParticipant)

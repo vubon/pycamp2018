@@ -22,19 +22,19 @@ class EventParticipantManager(models.Manager):
         """
             return all registerd participant list of the event
         """
-        return get_queryset().all_participant()
+        return self.get_queryset().all_participant()
 
     def selected_participant(self):
         """
             return selected participant list of the event
         """
-        return get_queryset().selected_participant()
+        return self.get_queryset().selected_participant()
 
     def paid_participant(self):
         """
             return paid participant list of the event
         """
-        return get_queryset().paid_participant()
+        return self.get_queryset().paid_participant()
 
 
 class EventParticipant(EventBasic):
@@ -49,9 +49,9 @@ class EventParticipant(EventBasic):
     registration_complete = models.BooleanField(default=False)
     is_selection_pass = models.BooleanField(default=False)
     payment_confirmed = models.BooleanField(default=False)
-    review_participant = JSONField(default={})
-    rating_participant = JSONField(default={})
-    confirmation_text = JSONField(default={})
+    review_participant = JSONField(null=True, blank=True)
+    rating_participant = JSONField(null=True, blank=True)
+    confirmation_text = JSONField(null=True, blank=True)
     participant_status = models.BooleanField(default=True)
 
     participant = EventParticipantManager()

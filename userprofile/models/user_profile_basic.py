@@ -4,7 +4,7 @@ from django.db import models
 from django.contrib.postgres.fields import JSONField
 
 class UserProfileBasic(models.Model):
-    auth = models.OneToOneField(User, on_delete=models.CASCADE)
+    auth = models.OneToOneField(User, null=True, on_delete=models.SET_NULL)
     contact = models.CharField(max_length=11)
     current_address = models.TextField(max_length=500)
     status = models.BooleanField(default=True)

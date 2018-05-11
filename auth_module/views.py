@@ -2,8 +2,9 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import PasswordChangeForm, PasswordResetForm
 from django.contrib.auth.decorators import user_passes_test
+from django.http import HttpResponse
 
-from .forms import SignUpForm, SignInForm
+from .forms import IndividualSignUpForm, OrganizationSignUpForm, SignInForm
 
 
 # redirect logged in user to home
@@ -17,11 +18,11 @@ def home(request):
 
 
 # @user_passes_test(redirect_authenticated_user)
-def signup(request):
+def individual_signup(request):
     if request.user.is_authenticated:
         return redirect('home')
     if request.method == 'POST':
-        form = SignUpForm(request.POST)
+        form = IndividualSignUpForm(request.POST)
         print(form)
         if form.is_valid():
             form.save()
@@ -29,9 +30,29 @@ def signup(request):
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
             login(request, user)
-            return redirect('signup')
+            # return redirect('individual_signup')
+            return HttpResponse('<h1>This is Individual Profile creation form</h1>')
         
-    form = SignUpForm()
+    form = IndividualSignUpForm()
+    return render(request, 'auth/signup.html', {'form': form})
+
+
+def organization_signup(request):
+    if request.user.is_authenticated:
+        return redirect('home')
+    if request.method == 'POST':
+        form = OrganizationSignUpForm(request.POST)
+        print(form)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            # return redirect('organization_signup')
+            return HttpResponse('<h1>This is Organization Profile creation form</h1>')
+
+    form = OrganizationSignUpForm()
     return render(request, 'auth/signup.html', {'form': form})
 
 

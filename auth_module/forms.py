@@ -3,7 +3,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 
 
-class SignUpForm(UserCreationForm):
+class IndividualSignUpForm(UserCreationForm):
     first_name = forms.CharField(max_length=30, required=False)
     last_name = forms.CharField(max_length=30, required=False)
     email = forms.EmailField(max_length=80)
@@ -12,6 +12,15 @@ class SignUpForm(UserCreationForm):
         model = User
         fields = ('username', 'first_name', 'last_name',
                   'email', 'password1', 'password2', )
+
+
+class OrganizationSignUpForm(UserCreationForm):
+    # organization_name = forms.CharField(max_length=100)
+    email = forms.EmailField(max_length=80)
+
+    class Meta:
+        model = User
+        fields = ('username', 'email', 'password1', 'password2',)
 
 
 class SignInForm(AuthenticationForm):

@@ -7,4 +7,4 @@ class EventQuerySet(models.QuerySet):
     """
 
     def event_queryset(self):
-        return self.filter(title='event title')
+        return self.all()

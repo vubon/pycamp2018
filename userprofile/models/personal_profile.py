@@ -3,6 +3,7 @@ from django.contrib.postgres.fields import JSONField
 
 from userprofile.models.user_profile_basic import UserProfileBasic
 
+
 class PersonalProfile(UserProfileBasic):
     GENDER_STATUS = (
         ('m', 'Male'),

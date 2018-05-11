@@ -7,3 +7,5 @@ class UserProfileBasicForm(forms.ModelForm):
     class Meta:
         model = UserProfileBasic
         fields = ['contact', 'current_address', 'status', 'gravatar']
+
+class

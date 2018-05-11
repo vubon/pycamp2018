@@ -8,4 +8,3 @@ class UserProfileBasicForm(forms.ModelForm):
         model = UserProfileBasic
         fields = ['contact', 'current_address', 'status', 'gravatar']
 
-class

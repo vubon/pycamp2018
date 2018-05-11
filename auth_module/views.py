@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, reverse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import PasswordChangeForm, PasswordResetForm
 from django.contrib.auth.decorators import user_passes_test
@@ -30,9 +30,8 @@ def individual_signup(request):
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
             login(request, user)
-            # return redirect('individual_signup')
-            return HttpResponse('<h1>This is Individual Profile creation form</h1>')
-        
+            return redirect(reverse('userprofile:create_profile'))
+
     form = IndividualSignUpForm()
     return render(request, 'auth/signup.html', {'form': form})
 

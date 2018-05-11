@@ -11,7 +11,7 @@ class JobApplicantManager(models.Model):
     """
 
     def get_queryset(self):
-        return JobApplicantQuerySet(self.model,using=self._db)
+        return JobApplicantQuerySet(self.model, using=self._db)
 
     def all_applicant(self):
         return self.get_queryset().all_applicant()
@@ -21,8 +21,8 @@ class JobApplicantManager(models.Model):
 
 
 class JobApplicant(models.Model):
-    job_id = job_id = models.ForeignKey(JobPostBasic,on_delete=models.CASCADE)
-    applicant_id = models.ForeignKey(PersonalProfile,on_delete=models.CASCADE)
+    job_id = models.ForeignKey(JobPostBasic, on_delete=models.CASCADE)
+    applicant_id = models.ForeignKey(PersonalProfile, on_delete=models.CASCADE)
     selection_confirmation= models.BooleanField(default=False)
     call_for_interview = models.BooleanField(default=False)
 

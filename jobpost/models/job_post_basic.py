@@ -1,7 +1,8 @@
 from django.db import models
 
-from jobpost.models.job_post_basic_queryset import JopPostQuerySet
+from jobpost.models.job_post_basic_queryset import JobPostQuerySet
 from userprofile.models.organization_profile import OrganizationProfile
+
 
 class JobPostBasicManager(models.Manager):
     """
@@ -20,7 +21,7 @@ class JobPostBasicManager(models.Manager):
 
 
 class JobPostBasic(models.Model):
-    organization_id = models.ForeignKey(OrganizationProfile,on_delete=models.CASCADE)
+    organization_id = models.ForeignKey(OrganizationProfile, on_delete=models.CASCADE)
     job_title = models.CharField(max_length=256)
     salary_range = models.CharField(max_length=256)
     is_part_time = models.BooleanField(default=False)
@@ -29,11 +30,11 @@ class JobPostBasic(models.Model):
     vacancy = models.PositiveIntegerField()
     deadline = models.DateField()
 
-    def create_job_post(self,request_data):
+    def create_job_post(self, request_data):
 
         pass
 
-    object = JobPostBasicManager()
+    objects = JobPostBasicManager()
 
     def __str__(self):
         return self.job_title

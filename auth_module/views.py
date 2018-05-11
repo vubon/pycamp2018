@@ -16,7 +16,7 @@ def home(request):
     return render(request, 'home.html')
 
 
-@user_passes_test(redirect_authenticated_user)
+# @user_passes_test(redirect_authenticated_user)
 def signup(request):
     if request.user.is_authenticated:
         return redirect('home')
@@ -35,12 +35,12 @@ def signup(request):
     return render(request, 'auth/signup.html', {'form': form})
 
 
+# @user_passes_test(redirect_authenticated_user)
 def signin(request):
     if request.user.is_authenticated:
         return redirect('home')
     if request.method == 'POST':
         form = SignInForm(data=request.POST)
-        print(form)
         if form.is_valid():
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password')

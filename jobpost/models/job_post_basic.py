@@ -1,6 +1,6 @@
 from django.db import models
 
-from jobpost.models.job_post_basic_queryset import JopPostQuerySet
+from jobpost.models.job_post_basic_queryset import JobPostQuerySet
 from userprofile.models.organization_profile import OrganizationProfile
 
 class JobPostBasicManager(models.Manager):

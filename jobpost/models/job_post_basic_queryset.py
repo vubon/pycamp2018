@@ -1,7 +1,7 @@
 from django.db import models
 
 
-class JopPostQuerySet(models.QuerySet):
+class JobPostQuerySet(models.QuerySet):
     """
         Detail about job post query set
     """

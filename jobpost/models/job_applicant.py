@@ -21,7 +21,7 @@ class JobApplicantManager(models.Model):
 
 
 class JobApplicant(models.Model):
-    job_id = job_id = models.ForeignKey(JobPostBasic,on_delete=models.CASCADE)
+    job_id = models.ForeignKey(JobPostBasic,on_delete=models.CASCADE)
     applicant_id = models.ForeignKey(PersonalProfile,on_delete=models.CASCADE)
     selection_confirmation= models.BooleanField(default=False)
     call_for_interview = models.BooleanField(default=False)

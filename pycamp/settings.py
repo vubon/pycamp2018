@@ -91,8 +91,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'pycamp',
-        'USER': 'postgres',
-        'PASSWORD': 'vubon',
+        'USER': 'shafik',
+        'PASSWORD': 'shafik',
         'HOST': 'localhost',
         'PORT': '5432',
     }

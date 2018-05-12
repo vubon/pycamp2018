@@ -12,9 +12,6 @@ class UserProfileBasic(models.Model):
     gravatar = models.CharField(max_length=100)
     guid = models.UUIDField(default=uuid.uuid4, editable=False)
 
-    # class Meta:
-    #     abstract = True
-
 
 class PersonalProfile(UserProfileBasic):
     GENDER_STATUS = (

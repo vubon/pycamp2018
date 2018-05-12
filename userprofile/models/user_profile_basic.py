@@ -11,6 +11,7 @@ class UserProfileBasic(models.Model):
     status = models.BooleanField(default=True)
     gravatar = models.CharField(max_length=100)
     guid = models.UUIDField(default=uuid.uuid4, editable=False)
+    is_organization = models.BooleanField(default=False)
 
     # class Meta:
     #     abstract = True

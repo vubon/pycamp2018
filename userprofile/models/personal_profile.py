@@ -30,6 +30,12 @@ class PersonalProfileManager(models.Manager):
         
 
 class PersonalProfile(UserProfileBasic):
+    class Meta:
+        permissions = (
+            ('create_profile', 'can create profile'),
+            ('update_profile', 'can update profile'),
+        )
+
     GENDER_STATUS = (
         ('m', 'Male'),
         ('f', 'Female'),

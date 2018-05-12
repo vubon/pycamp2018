@@ -56,3 +56,6 @@ class EventBasic(models.Model):
     def __str__(self):
         return self.title
 
+    class Meta:
+        abstract = True
+

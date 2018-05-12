@@ -1,7 +1,7 @@
 from django.db import models
 
 from userprofile.models import UserProfileBasic
-from events.models import EventBasic
+from events.models import EventDetail
 
 
 # Create your models here.
@@ -18,7 +18,7 @@ class PersonalRecommendation(models.Model):
         related_name='rec_trainer'
     )
     event_id = models.ForeignKey(
-        EventBasic,
+        EventDetail,
         on_delete=models.CASCADE,
         related_name='rec_event'
     )

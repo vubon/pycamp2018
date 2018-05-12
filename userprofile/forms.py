@@ -28,5 +28,3 @@ class IndividualProfileForm(forms.ModelForm):
         exclude = ['auth', 'username', 'email', 'password', 'is_trainer',
                    'status', 'gravatar']
 
-    # def save(self, commit=True):
-    #     m =

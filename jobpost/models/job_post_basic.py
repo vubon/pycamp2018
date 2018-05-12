@@ -21,6 +21,11 @@ class JobPostBasicManager(models.Manager):
 
 
 class JobPostBasic(models.Model):
+    class Meta:
+        permissions = (
+            ("view_post", "Can see job post"),
+        )
+
     organization_id = models.ForeignKey(OrganizationProfile, on_delete=models.CASCADE)
     job_title = models.CharField(max_length=256)
     salary_range = models.CharField(max_length=256)

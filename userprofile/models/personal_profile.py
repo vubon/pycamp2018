@@ -58,5 +58,7 @@ class PersonalProfile(UserProfileBasic):
 
     object = PersonalProfileManager()
 
-    # def __str__(self):
-    #     return self.auth.first_name + ' ' + self.auth.last_name
+    def __str__(self):
+        if self.auth:
+            return self.auth.first_name + ' ' + self.auth.last_name
+        return "auth does not exist"

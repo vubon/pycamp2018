@@ -3,8 +3,8 @@ from django.core.exceptions import ObjectDoesNotExist
 # from django.views.generic import FormView
 # from django.contrib.auth.models import User
 
-from .forms import IndividualProfileForm, BaseUserForm
-from .models import PersonalProfile
+from .forms import IndividualProfileForm, BaseUserForm, OrganizationModelForm
+from .models import PersonalProfile, OrganizationProfile
 
 
 def create_profile(request):
@@ -47,6 +47,38 @@ def update_profile(request):
                   {'user_form': user_form, 'profile_form': profile_form})
 
 
+def create_organization_profile(request):
+    if request.method == 'POST':
+        organization_profile_form = OrganizationModelForm(data=request.POST)
+        print(request.POST)
+        if organization_profile_form.is_valid():
+            # user = user_form.save()
+            profile = organization_profile_form.save(commit=False)
+            profile.auth = request.user
+            redirect('home')
+
+    # user_form = BaseUserForm(instance=request.user)
+    organization_profile_form = OrganizationModelForm(request.POST)
+    return render(request, 'userprofile/create_org_profile.html',
+                  {'profile_form': organization_profile_form})
+
+
+def update_organization_profile(request):
+    if request.method == 'POST':
+        # user_form = BaseUserForm(request.POST, instance=request.user)
+        organization_profile_form = OrganizationModelForm(data=request.POST)
+
+        if organization_profile_form.is_valid():
+            # user = user_form.save()
+            profile = organization_profile_form.save(commit=False)
+            profile.auth = request.user
+            profile.save()
+            redirect('home')
+
+    organization_profile = OrganizationProfile.objects.get(auth=request.user)
+    organization_profile_form = OrganizationModelForm(instance=organization_profile)
+    return render(request, 'userprofile/create_profile.html',
+                  {'profile_form': organization_profile_form})
 
 #
 # class CreateProfile(FormView):

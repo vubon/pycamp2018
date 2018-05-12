@@ -12,30 +12,6 @@
                 <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
                     {% csrf_token %}
                     <div class="card-block">
-                        {# if user form show it here #}
-                        {% if user_form %}
-                            {% for field in user_form.visible_fields %}
-                                <div class="form-group row">
-                                    <label for="{{ field.auto_id }}" class="col-md-3 col-form-label">{{ field.label_tag }}</label>
-                                    {% if form.is_bound %}
-                                        {% if field.errors %}
-                                             {% render_field field class="form-control is-invalid" %}
-                                            {% for error in field.errors %}
-                                                <div class="invalid-feedback">
-                                                    {{ error }}
-                                                </div>
-                                            {% endfor %}
-                                        {% else %}
-                                                {% render_field field class="form-control is-valid" %}
-                                        {% endif %}
-                                    {% else %}
-                                       <div class="col-md-6">
-                                         {% render_field field class="form-control" %}
-                                       </div>
-                                    {% endif %}
-                                </div>
-                            {% endfor %}
-                        {% endif %}
                     {{ profile_form.errors }}
                         {% for field in profile_form.visible_fields %}
                             <div class="form-group row">

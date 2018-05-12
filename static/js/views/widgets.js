@@ -1,31 +1,36 @@
-$(function(){
-  'use strict';
+/* global Chart, CustomTooltips, getStyle */
+import $ from 'jquery'
 
-  //convert Hex to RGBA
-  function convertHex(hex,opacity){
-    hex = hex.replace('#','');
-    var r = parseInt(hex.substring(0,2), 16);
-    var g = parseInt(hex.substring(2,4), 16);
-    var b = parseInt(hex.substring(4,6), 16);
+/**
+ * --------------------------------------------------------------------------
+ * CoreUI Free Boostrap Admin Template (v2.0.0-rc.1): main.js
+ * Licensed under MIT (https://coreui.io/license)
+ * --------------------------------------------------------------------------
+ */
 
-    var result = 'rgba('+r+','+g+','+b+','+opacity/100+')';
-    return result;
-  }
+/* eslint-disable no-magic-numbers */
+// Disable the on-canvas tooltip
+Chart.defaults.global.pointHitDetectionRadius = 1
+Chart.defaults.global.tooltips.enabled = false
+Chart.defaults.global.tooltips.mode = 'index'
+Chart.defaults.global.tooltips.position = 'nearest'
+Chart.defaults.global.tooltips.custom = CustomTooltips
 
-  //Cards with Charts
-  var labels = ['January','February','March','April','May','June','July'];
-  var data = {
-    labels: labels,
+// eslint-disable-next-line no-unused-vars
+const cardChart1 = new Chart($('#card-chart1'), {
+  type: 'line',
+  data: {
+    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
     datasets: [
       {
         label: 'My First dataset',
-        backgroundColor: $.brandPrimary,
+        backgroundColor: getStyle('--primary'),
         borderColor: 'rgba(255,255,255,.55)',
         data: [65, 59, 84, 84, 51, 55, 40]
-      },
+      }
     ]
-  };
-  var options = {
+  },
+  options: {
     maintainAspectRatio: false,
     legend: {
       display: false
@@ -38,18 +43,17 @@ $(function(){
         },
         ticks: {
           fontSize: 2,
-          fontColor: 'transparent',
+          fontColor: 'transparent'
         }
-
       }],
       yAxes: [{
         display: false,
         ticks: {
           display: false,
-          min: Math.min.apply(Math, data.datasets[0].data) - 5,
-          max: Math.max.apply(Math, data.datasets[0].data) + 5,
+          min: 35,
+          max: 89
         }
-      }],
+      }]
     },
     elements: {
       line: {
@@ -58,30 +62,27 @@ $(function(){
       point: {
         radius: 4,
         hitRadius: 10,
-        hoverRadius: 4,
-      },
+        hoverRadius: 4
+      }
     }
-  };
-  var ctx = $('#card-chart1');
-  var cardChart1 = new Chart(ctx, {
-    type: 'line',
-    data: data,
-    options: options
-  });
+  }
+})
 
-  var data = {
-    labels: labels,
+// eslint-disable-next-line no-unused-vars
+const cardChart2 = new Chart($('#card-chart2'), {
+  type: 'line',
+  data: {
+    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
     datasets: [
       {
         label: 'My First dataset',
-        backgroundColor: $.brandInfo,
+        backgroundColor: getStyle('--info'),
         borderColor: 'rgba(255,255,255,.55)',
         data: [1, 18, 9, 17, 34, 22, 11]
-      },
+      }
     ]
-  };
-
-  var options = {
+  },
+  options: {
     maintainAspectRatio: false,
     legend: {
       display: false
@@ -94,18 +95,17 @@ $(function(){
         },
         ticks: {
           fontSize: 2,
-          fontColor: 'transparent',
+          fontColor: 'transparent'
         }
-
       }],
       yAxes: [{
         display: false,
         ticks: {
           display: false,
-          min: Math.min.apply(Math, data.datasets[0].data) - 5,
-          max: Math.max.apply(Math, data.datasets[0].data) + 5,
+          min: -4,
+          max: 39
         }
-      }],
+      }]
     },
     elements: {
       line: {
@@ -115,18 +115,27 @@ $(function(){
       point: {
         radius: 4,
         hitRadius: 10,
-        hoverRadius: 4,
-      },
+        hoverRadius: 4
+      }
     }
-  };
-  var ctx = $('#card-chart2');
-  var cardChart2 = new Chart(ctx, {
-    type: 'line',
-    data: data,
-    options: options
-  });
+  }
+})
 
-  var options = {
+// eslint-disable-next-line no-unused-vars
+const cardChart3 = new Chart($('#card-chart3'), {
+  type: 'line',
+  data: {
+    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+    datasets: [
+      {
+        label: 'My First dataset',
+        backgroundColor: 'rgba(255,255,255,.2)',
+        borderColor: 'rgba(255,255,255,.55)',
+        data: [78, 81, 80, 45, 34, 12, 40]
+      }
+    ]
+  },
+  options: {
     maintainAspectRatio: false,
     legend: {
       display: false
@@ -137,7 +146,7 @@ $(function(){
       }],
       yAxes: [{
         display: false
-      }],
+      }]
     },
     elements: {
       line: {
@@ -146,45 +155,27 @@ $(function(){
       point: {
         radius: 0,
         hitRadius: 10,
-        hoverRadius: 4,
-      },
+        hoverRadius: 4
+      }
     }
-  };
-  var data = {
-    maintainAspectRatio: false,
-    labels: labels,
+  }
+})
+
+// eslint-disable-next-line no-unused-vars
+const cardChart4 = new Chart($('#card-chart4'), {
+  type: 'bar',
+  data: {
+    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December', 'January', 'February', 'March', 'April'],
     datasets: [
       {
         label: 'My First dataset',
         backgroundColor: 'rgba(255,255,255,.2)',
         borderColor: 'rgba(255,255,255,.55)',
-        data: [78, 81, 80, 45, 34, 12, 40]
-      },
+        data: [78, 81, 80, 45, 34, 12, 40, 85, 65, 23, 12, 98, 34, 84, 67, 82]
+      }
     ]
-  };
-  var ctx = $('#card-chart3');
-  var cardChart3 = new Chart(ctx, {
-    type: 'line',
-    data: data,
-    options: options
-  });
-
-  //Random Numbers
-  function random(min,max) {
-    return Math.floor(Math.random()*(max-min+1)+min);
-  }
-
-  var elements = 16;
-  var labels = [];
-  var data = [];
-
-  for (var i = 2000; i <= 2000 + elements; i++) {
-    labels.push(i);
-    data.push(random(40,100));
-  }
-
-
-  var options = {
+  },
+  options: {
     maintainAspectRatio: false,
     legend: {
       display: false
@@ -192,43 +183,33 @@ $(function(){
     scales: {
       xAxes: [{
         display: false,
-        barPercentage: 0.7,
+        barPercentage: 0.6
       }],
       yAxes: [{
-        display: false,
+        display: false
       }]
-    },
+    }
+  }
+})
 
-  };
-  var data = {
-    labels: labels,
+// Random Numbers
+const random = (min, max) => Math.floor(Math.random() * (max - min + 1) + min)
+
+// eslint-disable-next-line no-unused-vars
+const sparklineChart1 = new Chart($('#sparkline-chart-1'), {
+  type: 'bar',
+  data: {
+    labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S', 'M', 'T', 'W', 'T', 'F', 'S', 'S', 'M'],
     datasets: [
       {
-        backgroundColor: 'rgba(255,255,255,.3)',
+        backgroundColor: getStyle('--primary'),
         borderColor: 'transparent',
-        data: data
-      },
+        borderWidth: 1,
+        data: [random(40, 100), random(40, 100), random(40, 100), random(40, 100), random(40, 100), random(40, 100), random(40, 100), random(40, 100), random(40, 100), random(40, 100), random(40, 100), random(40, 100), random(40, 100), random(40, 100), random(40, 100)]
+      }
     ]
-  };
-  var ctx = $('#card-chart4');
-  var cardChart4 = new Chart(ctx, {
-    type: 'bar',
-    data: data,
-    options: options
-  });
-
-
-  var elements = 15;
-  var labels = [];
-  var data = [];
-
-  for (var i = 0; i <= elements; i++) {
-    labels.push(i);
-    data.push(random(40,100));
-  }
-
-  var options = {
-    responsive: false,
+  },
+  options: {
     maintainAspectRatio: false,
     legend: {
       display: false
@@ -241,37 +222,24 @@ $(function(){
         display: false
       }]
     }
-  };
-  var data = {
-    labels: labels,
+  }
+})
+
+// eslint-disable-next-line no-unused-vars
+const sparklineChart2 = new Chart($('#sparkline-chart-2'), {
+  type: 'bar',
+  data: {
+    labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S', 'M', 'T', 'W', 'T', 'F', 'S', 'S', 'M'],
     datasets: [
       {
-        backgroundColor: $.brandPrimary,
+        backgroundColor: getStyle('--warning'),
         borderColor: 'transparent',
         borderWidth: 1,
-        data: data
-      },
+        data: [random(40, 100), random(40, 100), random(40, 100), random(40, 100), random(40, 100), random(40, 100), random(40, 100), random(40, 100), random(40, 100), random(40, 100), random(40, 100), random(40, 100), random(40, 100), random(40, 100), random(40, 100)]
+      }
     ]
-  };
-  var ctx = $('#chart-1');
-  var Chart1 = new Chart(ctx, {
-    type: 'bar',
-    data: data,
-    options: options
-  });
-
-
-  var elements = 15;
-  var labels = [];
-  var data = [];
-
-  for (var i = 0; i <= elements; i++) {
-    labels.push(i);
-    data.push(random(40,100));
-  }
-
-  var options = {
-    responsive: false,
+  },
+  options: {
     maintainAspectRatio: false,
     legend: {
       display: false
@@ -284,37 +252,24 @@ $(function(){
         display: false
       }]
     }
-  };
-  var data = {
-    labels: labels,
+  }
+})
+
+// eslint-disable-next-line no-unused-vars
+const sparklineChart3 = new Chart($('#sparkline-chart-3'), {
+  type: 'bar',
+  data: {
+    labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S', 'M', 'T', 'W', 'T', 'F', 'S', 'S', 'M'],
     datasets: [
       {
-        backgroundColor: $.brandWarning,
+        backgroundColor: getStyle('--success'),
         borderColor: 'transparent',
         borderWidth: 1,
-        data: data
-      },
+        data: [random(40, 100), random(40, 100), random(40, 100), random(40, 100), random(40, 100), random(40, 100), random(40, 100), random(40, 100), random(40, 100), random(40, 100), random(40, 100), random(40, 100), random(40, 100), random(40, 100), random(40, 100)]
+      }
     ]
-  };
-  var ctx = $('#chart-2');
-  var Chart2 = new Chart(ctx, {
-    type: 'bar',
-    data: data,
-    options: options
-  });
-
-
-  var elements = 15;
-  var labels = [];
-  var data = [];
-
-  for (var i = 0; i <= elements; i++) {
-    labels.push(i);
-    data.push(random(40,100));
-  }
-
-  var options = {
-    responsive: false,
+  },
+  options: {
     maintainAspectRatio: false,
     legend: {
       display: false
@@ -327,62 +282,24 @@ $(function(){
         display: false
       }]
     }
-  };
-  var data = {
-    labels: labels,
-    datasets: [
-      {
-        backgroundColor: $.brandSuccess,
-        borderColor: 'transparent',
-        borderWidth: 1,
-        data: data
-      },
-    ]
-  };
-  var ctx = $('#chart-3');
-  var Chart3 = new Chart(ctx, {
-    type: 'bar',
-    data: data,
-    options: options
-  });
+  }
+})
 
-  var options = {
-    responsive: false,
-    maintainAspectRatio: false,
-    legend: {
-      display: false
-    },
-    scales: {
-      xAxes: [{
-        display: false
-      }],
-      yAxes: [{
-        display: false
-      }]
-    },
-    elements: { point: { radius: 0 } }
-  };
-  var data = {
-    labels: ['January','February','March','April','May','June','July'],
+// eslint-disable-next-line no-unused-vars
+const sparklineChart4 = new Chart($('#sparkline-chart-4'), {
+  type: 'line',
+  data: {
+    labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
     datasets: [
       {
         backgroundColor: 'transparent',
-        borderColor: $.brandInfo,
+        borderColor: getStyle('--info'),
         borderWidth: 2,
-        data: [65, 59, 84, 84, 51, 55, 40]
-      },
+        data: [random(40, 100), random(40, 100), random(40, 100), random(40, 100), random(40, 100), random(40, 100), random(40, 100)]
+      }
     ]
-  };
-  var ctx = $('#chart-4');
-  var Chart4 = new Chart(ctx, {
-    type: 'line',
-    data: data,
-    options: options
-  });
-
-
-  var options = {
-    responsive: false,
+  },
+  options: {
     maintainAspectRatio: false,
     legend: {
       display: false
@@ -395,29 +312,29 @@ $(function(){
         display: false
       }]
     },
-    elements: { point: { radius: 0 } }
-  };
-  var data = {
-    labels: ['January','February','March','April','May','June','July'],
+    elements: {
+      point: {
+        radius: 0
+      }
+    }
+  }
+})
+
+// eslint-disable-next-line no-unused-vars
+const sparklineChart5 = new Chart($('#sparkline-chart-5'), {
+  type: 'line',
+  data: {
+    labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
     datasets: [
       {
         backgroundColor: 'transparent',
-        borderColor: $.brandSuccess,
+        borderColor: getStyle('--success'),
         borderWidth: 2,
-        data: [65, 59, 84, 84, 51, 55, 40]
-      },
+        data: [random(40, 100), random(40, 100), random(40, 100), random(40, 100), random(40, 100), random(40, 100), random(40, 100)]
+      }
     ]
-  };
-  var ctx = $('#chart-5');
-  var Chart5 = new Chart(ctx, {
-    type: 'line',
-    data: data,
-    options: options
-  });
-
-
-  var options = {
-    responsive: false,
+  },
+  options: {
     maintainAspectRatio: false,
     legend: {
       display: false
@@ -430,135 +347,134 @@ $(function(){
         display: false
       }]
     },
-    elements: { point: { radius: 0 } }
-  };
-  var data = {
-    labels: ['January','February','March','April','May','June','July'],
+    elements: {
+      point: {
+        radius: 0
+      }
+    }
+  }
+})
+
+// eslint-disable-next-line no-unused-vars
+const sparklineChart6 = new Chart($('#sparkline-chart-6'), {
+  type: 'line',
+  data: {
+    labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
     datasets: [
       {
         backgroundColor: 'transparent',
-        borderColor: $.brandDanger,
+        borderColor: getStyle('--danger'),
         borderWidth: 2,
-        data: [65, 59, 84, 84, 51, 55, 40]
-      },
+        data: [random(40, 100), random(40, 100), random(40, 100), random(40, 100), random(40, 100), random(40, 100), random(40, 100)]
+      }
     ]
-  };
-  var ctx = $('#chart-6');
-  var Chart6 = new Chart(ctx, {
-    type: 'line',
-    data: data,
-    options: options
-  });
-
-
-  var options = {
+  },
+  options: {
     maintainAspectRatio: false,
     legend: {
       display: false
     },
     scales: {
       xAxes: [{
-        display:false,
-        points:false,
+        display: false
       }],
       yAxes: [{
-        display:false,
+        display: false
       }]
     },
-    elements: { point: { radius: 0 } }
-  };
-  var data = {
-    labels: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
-    datasets: [
-      {
-        backgroundColor: 'transparent',
-        borderColor: 'rgba(255,255,255,.55)',
-        borderWidth: 2,
-        data: [4, 18, 9, 17, 34, 22, 11, 3, 15, 12, 18, 9]
-      },
-    ]
-  };
-  var ctx = $('.chart-7');
-  var Chart7 = new Chart(ctx, {
-    type: 'line',
-    data: data,
-    options: options
-  });
+    elements: {
+      point: {
+        radius: 0
+      }
+    }
+  }
+})
 
-  var ctx = $('.chart-7-2');
-  var Chart72 = new Chart(ctx, {
-    type: 'line',
-    data: data,
-    options: options
-  });
+const brandBoxChartLabels = ['January', 'February', 'March', 'April', 'May', 'June', 'July']
+const brandBoxChartOptions = {
+  responsive: true,
+  maintainAspectRatio: false,
+  legend: {
+    display: false
+  },
+  scales: {
+    xAxes: [{
+      display:false
+    }],
+    yAxes: [{
+      display:false
+    }]
+  },
+  elements: {
+    point: {
+      radius: 0,
+      hitRadius: 10,
+      hoverRadius: 4,
+      hoverBorderWidth: 3
+    }
+  }
+}
 
-  var ctx = $('.chart-7-3');
-  var Chart73 = new Chart(ctx, {
-    type: 'line',
-    data: data,
-    options: options
-  });
+// eslint-disable-next-line no-unused-vars
+const brandBoxChart1 = new Chart($('#social-box-chart-1'), {
+  type: 'line',
+  data: {
+    labels: brandBoxChartLabels,
+    datasets: [{
+      backgroundColor: 'rgba(255,255,255,.1)',
+      borderColor: 'rgba(255,255,255,.55)',
+      pointHoverBackgroundColor: '#fff',
+      borderWidth: 2,
+      data: [65, 59, 84, 84, 51, 55, 40]
+    }]
+  },
+  options: brandBoxChartOptions
+})
 
-  var ctx = $('.chart-7-4');
-  var Chart74 = new Chart(ctx, {
-    type: 'line',
-    data: data,
-    options: options
-  });
+// eslint-disable-next-line no-unused-vars
+const brandBoxChart2 = new Chart($('#social-box-chart-2'), {
+  type: 'line',
+  data: {
+    labels: brandBoxChartLabels,
+    datasets: [{
+      backgroundColor: 'rgba(255,255,255,.1)',
+      borderColor: 'rgba(255,255,255,.55)',
+      pointHoverBackgroundColor: '#fff',
+      borderWidth: 2,
+      data: [1, 13, 9, 17, 34, 41, 38]
+    }]
+  },
+  options: brandBoxChartOptions
+})
 
+// eslint-disable-next-line no-unused-vars
+const brandBoxChart3 = new Chart($('#social-box-chart-3'), {
+  type: 'line',
+  data: {
+    labels: brandBoxChartLabels,
+    datasets: [{
+      backgroundColor: 'rgba(255,255,255,.1)',
+      borderColor: 'rgba(255,255,255,.55)',
+      pointHoverBackgroundColor: '#fff',
+      borderWidth: 2,
+      data: [78, 81, 80, 45, 34, 12, 40]
+    }]
+  },
+  options: brandBoxChartOptions
+})
 
-  var options = {
-    maintainAspectRatio: false,
-    legend: {
-      display: false
-    },
-    scales: {
-      xAxes: [{
-        display:false,
-        barPercentage: 0.6,
-      }],
-      yAxes: [{
-        display:false,
-        ticks: {
-          beginAtZero: true,
-        }
-      }]
-    },
-  };
-  var data = {
-    labels: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
-    datasets: [
-      {
-        backgroundColor: 'rgba(0,0,0,.2)',
-        data: [4, 18, 9, 17, 34, 22, 11, 3, 15, 12, 18, 9]
-      },
-    ]
-  };
-  var ctx = $('.chart-8');
-  var Chart8 = new Chart(ctx, {
-    type: 'bar',
-    data: data,
-    options: options
-  });
-
-  var ctx = $('.chart-8-2');
-  var Chart82 = new Chart(ctx, {
-    type: 'bar',
-    data: data,
-    options: options
-  });
-
-  var ctx = $('.chart-8-3');
-  var Chart83 = new Chart(ctx, {
-    type: 'bar',
-    data: data,
-    options: options
-  });
-
-  var ctx = $('.chart-8-4');
-  var Chart84 = new Chart(ctx, {
-    type: 'bar',
-    data: data,
-    options: options
-  });
+// eslint-disable-next-line no-unused-vars
+const brandBoxChart4 = new Chart($('#social-box-chart-4'), {
+  type: 'line',
+  data: {
+    labels: brandBoxChartLabels,
+    datasets: [{
+      backgroundColor: 'rgba(255,255,255,.1)',
+      borderColor: 'rgba(255,255,255,.55)',
+      pointHoverBackgroundColor: '#fff',
+      borderWidth: 2,
+      data: [35, 23, 56, 22, 97, 23, 64]
+    }]
+  },
+  options: brandBoxChartOptions
 })

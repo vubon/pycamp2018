@@ -31,6 +31,7 @@ def individual_signup(request):
             user = authenticate(username=username, password=raw_password)
             login(request, user)
             return redirect(reverse('userprofile:create_profile'))
+            # return redirect('home')
 
     form = IndividualSignUpForm()
     return render(request, 'auth/signup.html', {'form': form})
@@ -48,8 +49,8 @@ def organization_signup(request):
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
             login(request, user)
-            # return redirect('organization_signup')
-            return HttpResponse('<h1>This is Organization Profile creation form</h1>')
+            return redirect(reverse('userprofile:create_organization_profile'))
+            # return HttpResponse('<h1>This is Organization Profile creation form</h1>')
 
     form = OrganizationSignUpForm()
     return render(request, 'auth/signup.html', {'form': form})

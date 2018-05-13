@@ -13,7 +13,7 @@ def individual_profile_creation_check(user):
 
 
 @login_required(login_url='/signin/')
-@user_passes_test(individual_profile_creation_check)
+# @user_passes_test(individual_profile_creation_check)
 def create_profile(request):
     if request.method == 'POST':
         user_form = BaseUserForm(request.POST, instance=request.user)
@@ -58,14 +58,14 @@ def update_profile(request):
 @login_required(login_url='/signin/')
 def create_organization_profile(request):
     if request.method == 'POST':
-        organization_profile_form = OrganizationModelForm(data=request.POST)
+        organization_profile_form = OrganizationModelForm(request.POST)
         print(request.POST)
         if organization_profile_form.is_valid():
             # user = user_form.save()
             profile = organization_profile_form.save(commit=False)
             profile.auth = request.user
             profile.save()
-            redirect('home')
+            return redirect('home')
 
     # user_form = BaseUserForm(instance=request.user)
     organization_profile_form = OrganizationModelForm()
@@ -77,18 +77,20 @@ def create_organization_profile(request):
 def update_organization_profile(request):
     if request.method == 'POST':
         # user_form = BaseUserForm(request.POST, instance=request.user)
-        organization_profile_form = OrganizationModelForm(data=request.POST)
+        organization_profile = OrganizationProfile.objects.get(auth=request.user)
+        organization_profile_form = OrganizationModelForm(request.POST, instance=organization_profile)
 
         if organization_profile_form.is_valid():
             # user = user_form.save()
             profile = organization_profile_form.save(commit=False)
             profile.auth = request.user
             profile.save()
-            redirect('home')
+            return redirect('home')
 
     organization_profile = OrganizationProfile.objects.get(auth=request.user)
     organization_profile_form = OrganizationModelForm(instance=organization_profile)
-    return render(request, 'userprofile/create_profile.html',
+
+    return render(request, 'userprofile/create_org_profile.html',
                   {'profile_form': organization_profile_form})
 
 #

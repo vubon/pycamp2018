@@ -2,6 +2,40 @@
 
 {% block content %}
 
-    <h2>Hello</h2>
+
+    <h1>Job List</h1>
+
+{#    {% if jobpostbasic_list %}#}
+{#    <ul>#}
+{##}
+{#      {% for job in jobpostbasic_list %}#}
+{#      <li>#}
+{#        <a href="{{ job.get_absolute_url}}">{{ job.job_title }}</a> {{ job.position }}#}
+{#      </li>#}
+{#          <li>#}
+{#            <h2>{{ job.jobpostdetails.description }}</h2>#}
+{#            <h2>{{ job.jobpostdetails.description}}</h2>#}
+{#        </li>#}
+{#      {% endfor %}#}
+{##}
+{#    </ul>#}
+{#    {% else %}#}
+{#      <p>There are no books in the library.</p>#}
+{#    {% endif %}#}
+
+    {% if jobpostbasic_list %}
+         {% for job in jobpostbasic_list %}
+    <div class="card">
+        <div class="card-header">
+            {{ job.position }}
+        </div>
+        <div class="card-body">
+            <h5 class="card-title"> {{ job.job_title }}</h5>
+            <p class="card-text">{{ job.jobpostdetails.description }}</p>
+            <a href="{{ job.get_absolute_url}}" class="btn btn-primary">Details</a>
+        </div>
+    </div>
+        {% endfor %}
+    {% endif %}
 
 {% endblock %}

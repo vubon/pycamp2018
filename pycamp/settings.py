@@ -147,3 +147,4 @@ STATICFILES_DIRS = (
 
 # TEST EMAIL
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+LOGIN_URL = '/signin/'

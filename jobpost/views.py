@@ -6,6 +6,8 @@ from django.views.generic import (View,TemplateView,
 from  .models.job_post_basic import JobPostBasic
 from  .models.job_post_detail import JobPostDetails
 
+from django.urls import reverse_lazy
+from django.contrib.auth.decorators import login_required
 
 from .froms import JobPostBasicForm,JobPostDetailsForm
 
@@ -14,7 +16,7 @@ class JobDashboardView(View):
     def get(self, request):
         return render(request, 'jobpost/job_post_deshboard.html')
 
-
+@login_required(login_url='/signin/')
 def JobCreate(request):
     user = request.user
     if request.method == 'POST':
@@ -41,3 +43,18 @@ def JobCreate(request):
 
 class JobListView(ListView):
     model = JobPostBasic
+
+class JobDetailView(DetailView):
+    model = JobPostBasic
+
+class JobDeleteView(DeleteView):
+    model = JobPostBasic
+    success_url = reverse_lazy('joblist')
+
+
+class JobUpdateView(UpdateView):
+    model = JobPostDetails
+    #basic_form = JobPostBasicForm
+    detail_form=JobPostDetailsForm
+    template_name = 'jobpost/job_post_update_form.html'
+    success_url = 'joblist'

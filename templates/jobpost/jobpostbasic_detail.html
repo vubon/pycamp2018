@@ -1,0 +1,32 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+{#   <h1>Job List</h1>#}
+{##}
+{#    <h1>{{ jobpostbasic.job_title }}</h1><br>#}
+{#    <h1>{{ jobpostbasic.position }}</h1><br>#}
+{#    <h1>{{ jobpostbasic.salary_range }}</h1><br>#}
+{#    <h1>{{ jobpostbasic.stack }}</h1><br>#}
+{#    <h1>{{ jobpostbasic.vacancy }}</h1><br>#}
+{#    <h1>{{jobpostbasic.jobpostdetails.description }}</h1><br>#}
+{#    <h1>{{jobpostbasic.jobpostdetails.application_process }}</h1><br>#}
+{#    <h1>{{jobpostbasic.jobpostdetails.screening_details }}</h1><br>#}
+
+    <div class="card">
+        <div class="card-header">
+            {{ jobpostbasic.position }}
+        </div>
+        <div class="card-body">
+            <h5 class="card-title"> {{ jobpostbasic.job_title }}</h5>
+            <h5 class="card-title">Vacancy: {{ jobpostbasic.vacancy }}</h5>
+            <p class="card-text">{{ jobpostbasic.jobpostdetails.description }}</p>
+            <p class="card-text">{{ jobpostbasic.jobpostdetails.application_proces}}</p>
+            <p class="card-text">{{ jobpostbasic.jobpostdetails.screening_details }}</p>
+            <p class="card-text">{{ jobpostbasic.salary_range }}</p>
+            <a href="{% url 'job_post_delete' jobpostbasic.pk %}" class="btn btn-danger">Delete</a>
+            <a href="{% url 'job_post_update' jobpostbasic.pk %}" class="btn btn-primary">Update</a>
+        </div>
+    </div>
+
+
+{% endblock %}

@@ -93,7 +93,20 @@ def update_organization_profile(request):
     return render(request, 'userprofile/create_org_profile.html',
                   {'profile_form': organization_profile_form})
 
-#
+
+def delete_profile(request):
+    user = request.user
+    user.is_active = False
+    user.save()
+    print('Profile successfully disabled.')
+    return redirect('home')
+
+#def delete_profile(request):
+    # user = request.user
+    # user.is_active = False
+    # user.save()
+    # messages.success(request, 'Profile successfully disabled.')
+    # return redirect('index')
 # class CreateProfile(FormView):
 #     form_class = IndividualProfileForm
 #     template_name = 'userprofile/create_profile.html'

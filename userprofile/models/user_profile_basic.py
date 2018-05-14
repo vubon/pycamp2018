@@ -15,3 +15,8 @@ class UserProfileBasic(models.Model):
 
     # class Meta:
     #     abstract = True
+
+    def __str__(self):
+        if self.auth:
+            return self.auth.username
+        return "auth does not exist"

@@ -14,7 +14,7 @@ def individual_profile_creation_check(user):
 
 @login_required(login_url='/signin/')
 # @user_passes_test(individual_profile_creation_check)
-def create_profile(request):
+def create_profile(request, username):
     if request.method == 'POST':
         user_form = BaseUserForm(request.POST, instance=request.user)
         profile_form = IndividualProfileForm(request.POST)
@@ -33,7 +33,7 @@ def create_profile(request):
 
 
 @login_required(login_url='/signin/')
-def update_profile(request):
+def update_profile(request, username):
     user = request.user
     if request.method == 'POST':
         user_form = BaseUserForm(request.POST, instance=user)
@@ -56,7 +56,7 @@ def update_profile(request):
 
 
 @login_required(login_url='/signin/')
-def create_organization_profile(request):
+def create_organization_profile(request, username):
     if request.method == 'POST':
         organization_profile_form = OrganizationModelForm(request.POST)
         print(request.POST)
@@ -74,7 +74,7 @@ def create_organization_profile(request):
 
 
 @login_required(login_url='/signin/')
-def update_organization_profile(request):
+def update_organization_profile(request, username):
     if request.method == 'POST':
         # user_form = BaseUserForm(request.POST, instance=request.user)
         organization_profile = OrganizationProfile.objects.get(auth=request.user)
@@ -94,19 +94,34 @@ def update_organization_profile(request):
                   {'profile_form': organization_profile_form})
 
 
-def delete_profile(request):
+def delete_profile(request, username):
     user = request.user
     user.is_active = False
     user.save()
     print('Profile successfully disabled.')
     return redirect('home')
 
-#def delete_profile(request):
-    # user = request.user
-    # user.is_active = False
-    # user.save()
-    # messages.success(request, 'Profile successfully disabled.')
-    # return redirect('index')
+
+# @staff_member_required
+def del_user(request, username):
+    user = request.user
+    try:
+        # u = User.objects.get(username = username)
+        user.delete()
+        # messages.sucess(request, "The user is deleted")
+        return redirect('home')
+
+
+    except User.DoesNotExist:
+        # messages.error(request, "User doesnot exist")
+        return redirect('home')
+    #
+    # except Exception as e:
+    #     return render(request, 'front.html',{'err':e.message})
+    #
+    # return render(request, 'front.html')
+
+
 # class CreateProfile(FormView):
 #     form_class = IndividualProfileForm
 #     template_name = 'userprofile/create_profile.html'

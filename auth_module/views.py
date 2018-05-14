@@ -30,7 +30,7 @@ def individual_signup(request):
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
             login(request, user)
-            return redirect(reverse('userprofile:create_profile'))
+            return redirect(reverse('userprofile:create_profile', kwargs={'username': username}))
             # return redirect('home')
 
     form = IndividualSignUpForm()
@@ -49,7 +49,7 @@ def organization_signup(request):
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
             login(request, user)
-            return redirect(reverse('userprofile:create_organization_profile'))
+            return redirect(reverse('userprofile:create_organization_profile', kwargs={'username': username}))
             # return HttpResponse('<h1>This is Organization Profile creation form</h1>')
 
     form = OrganizationSignUpForm()

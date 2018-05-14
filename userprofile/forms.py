@@ -19,7 +19,7 @@ class IndividualProfileForm(forms.ModelForm):
     class Meta:
         model = PersonalProfile
         exclude = ['auth', 'username', 'email', 'password', 'is_trainer',
-                   'status', 'gravatar']
+                   'status', 'gravatar', 'is_organization']
 
 
 class OrganizationModelForm(forms.ModelForm):

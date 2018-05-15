@@ -98,8 +98,7 @@ def delete_profile(request, username):
     user = request.user
     user.is_active = False
     user.save()
-    print('Profile successfully disabled.')
-    return redirect('home')
+    return render(request, 'userprofile/deactivation_profile.html')
 
 
 # @staff_member_required

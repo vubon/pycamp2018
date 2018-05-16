@@ -12,7 +12,6 @@ def redirect_authenticated_user(user):
     if user.is_authenticated:
         return redirect('home')
 
-
 def home(request):
     return render(request, 'home.html')
 
@@ -68,7 +67,8 @@ def signin(request):
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
-                return redirect('home')
+                # return redirect('home')
+                return redirect(reverse('userprofile:dashboard', kwargs={'username': username}))
     form = SignInForm()
     return render(request, 'auth/signin.html', {'form': form})
 

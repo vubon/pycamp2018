@@ -12,6 +12,10 @@ def individual_profile_creation_check(user):
     return not user.user_profile.is_organization
 
 
+def dashboard(request, username):
+    return render(request, 'base/base.html')
+
+
 @login_required(login_url='/signin/')
 # @user_passes_test(individual_profile_creation_check)
 def create_profile(request, username):

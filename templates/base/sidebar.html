@@ -3,7 +3,7 @@
         <ul class="nav">
             <li class="nav-item">
                 <a class="nav-link" href="/"><i class="icon-speedometer"></i> My Profile </a>
-                <a class="nav-link" href="{% url 'event_create' %}"><i class="icon-speedometer"></i> Update Profile</a>
+                <a class="nav-link" href="/@{{ request.user.get_username }}/update_profile/"><i class="icon-speedometer"></i> Update Profile</a>
             </li>
 
             <li class="nav-title">
@@ -11,16 +11,7 @@
             </li>
 
             <li class="nav-item nav-dropdown">
-                <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-star"></i> Ongoing</a>
-                <ul class="nav-dropdown-items">
-                    <li class="nav-item">
-                        <a class="nav-link" href="icons-font-awesome.html"><i class="icon-star"></i> Font Awesome</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="icons-simple-line-icons.html"><i class="icon-star"></i> Simple Line
-                            Icons</a>
-                    </li>
-                </ul>
+                <a class="nav-link" href="#"><i class="icon-star"></i> Ongoing</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="widgets.html"><i class="icon-calculator"></i> Upcoming <span
@@ -36,53 +27,17 @@
                 Job Profile
             </li>
             <li class="nav-item nav-dropdown">
-                <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i> Applied</a>
-                <ul class="nav-dropdown-items">
-                    <li class="nav-item">
-                        <a class="nav-link" href="components-buttons.html"><i class="icon-puzzle"></i> Buttons</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="components-social-buttons.html"><i class="icon-puzzle"></i> Social
-                            Buttons</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="components-cards.html"><i class="icon-puzzle"></i> Cards</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="components-forms.html"><i class="icon-puzzle"></i> Forms</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="components-modals.html"><i class="icon-puzzle"></i> Modals</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="components-switches.html"><i class="icon-puzzle"></i> Switches</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="components-tables.html"><i class="icon-puzzle"></i> Tables</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="components-tabs.html"><i class="icon-puzzle"></i> Tabs</a>
-                    </li>
-                </ul>
-            </li>
+                <a class="nav-link" href="#"><i class="icon-puzzle"></i> Applied</a>
+                </li>
             <li class="nav-item nav-dropdown">
-                <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-star"></i> Wishlist</a>
-                <ul class="nav-dropdown-items">
-                    <li class="nav-item">
-                        <a class="nav-link" href="icons-font-awesome.html"><i class="icon-star"></i> Font Awesome</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="icons-simple-line-icons.html"><i class="icon-star"></i> Simple Line
-                            Icons</a>
-                    </li>
-                </ul>
+                <a class="nav-link" href="#"><i class="icon-star"></i> Wishlist</a>
             </li>
             <li class="divider"></li>
             <li class="nav-title">
                 Extras
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="charts.html"><i class="icon-pie-chart"></i> Deactivate Account</a>
+                <a class="nav-link" href="/@{{ request.user.get_username }}/delete_profile/"><i class="icon-pie-chart"></i> Deactivate Account</a>
             </li>
         </ul>
     </nav>

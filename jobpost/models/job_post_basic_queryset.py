@@ -11,4 +11,4 @@ class JobPostQuerySet(models.QuerySet):
             Get all job post
         """
 
-        return self.all()
+        return self.defer('job_title','vacancy', 'deadline','id').filter(status=True)

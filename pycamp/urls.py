@@ -24,6 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('event/', include('events.urls')),
     path('', include('auth_module.urls')),
+    path('job/',include('jobpost.urls')),
 ]
 
 # urlpatterns += [

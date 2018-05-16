@@ -90,7 +90,7 @@ WSGI_APPLICATION = 'pycamp.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'pycamp',
+        'NAME': 'pycamp2018',
         'USER': 'shafik',
         'PASSWORD': 'shafik',
         'HOST': 'localhost',

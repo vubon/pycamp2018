@@ -5,7 +5,7 @@ from jobpost.models.job_post_basic import JobPostBasic
 from jobpost.models.job_applicant_queryset import JobApplicantQuerySet
 
 
-class JobApplicantManager(models.Model):
+class JobApplicantManager(models.Manager):
     """
         Find Job applicants
     """

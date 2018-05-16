@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.core.exceptions import ObjectDoesNotExist
-# from django.views.generic import FormView
+from django.views.generic import FormView, DetailView
+
+from .models import UserProfileBasic
 # from django.contrib.auth.models import User
 
 from .forms import IndividualProfileForm, BaseUserForm, OrganizationModelForm
@@ -90,6 +92,14 @@ def update_organization_profile(request):
     organization_profile_form = OrganizationModelForm(instance=organization_profile)
     return render(request, 'userprofile/create_profile.html',
                   {'profile_form': organization_profile_form})
+
+
+class ProfileDetails(DetailView):
+    model = UserProfileBasic
+    template_name = 'userprofile/profile_details.html'
+
+
+
 
 #
 # class CreateProfile(FormView):

@@ -103,3 +103,9 @@ def password_reset(request):
             return redirect('home')
     form = PasswordResetForm(None)
     return render(request, 'auth/password_reset.html', {'form': form})
+
+
+# def profile_required():
+#     def wrapper(func):
+#         def _view(request, *args, **kwargs):
+#             user =

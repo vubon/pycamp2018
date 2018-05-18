@@ -24,14 +24,5 @@ class Migration(migrations.Migration):
             name='status',
             field=models.BooleanField(default=True),
         ),
-        migrations.AlterField(
-            model_name='jobpostbasic',
-            name='organization_id',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL),
-        ),
-        migrations.AlterField(
-            model_name='jobpostdetails',
-            name='job_id',
-            field=models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to='jobpost.JobPostBasic'),
-        ),
+
     ]

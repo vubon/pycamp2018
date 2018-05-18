@@ -33,7 +33,7 @@ class Migration(migrations.Migration):
                 ('stack', models.TextField()),
                 ('vacancy', models.PositiveIntegerField()),
                 ('deadline', models.DateField()),
-                ('organization_id', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='userprofile.OrganizationProfile')),
+                ('organization', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='userprofile.OrganizationProfile')),
             ],
         ),
         migrations.CreateModel(
@@ -43,12 +43,7 @@ class Migration(migrations.Migration):
                 ('description', models.TextField()),
                 ('application_process', models.TextField()),
                 ('screening_details', models.TextField()),
-                ('job_id', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='jobpost.JobPostBasic')),
+                ('job', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='jobpost.JobPostBasic')),
             ],
-        ),
-        migrations.AddField(
-            model_name='jobapplicant',
-            name='job_id',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='jobpost.JobPostBasic'),
         ),
     ]

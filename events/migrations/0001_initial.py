@@ -58,7 +58,7 @@ class Migration(migrations.Migration):
                 ('review_participant', django.contrib.postgres.fields.jsonb.JSONField(default={})),
                 ('rating_participant', django.contrib.postgres.fields.jsonb.JSONField(default={})),
                 ('confirmation_text', django.contrib.postgres.fields.jsonb.JSONField(default={})),
-                ('participant_id', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='event_participant', related_query_name='participant', to='userprofile.UserProfileBasic')),
+                ('participant', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='event_participant', related_query_name='participant', to='userprofile.UserProfileBasic')),
             ],
             bases=('events.eventbasic',),
         ),

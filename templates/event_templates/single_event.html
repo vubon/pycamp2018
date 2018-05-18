@@ -1,0 +1,206 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+<div class="container-fluid">
+    <table>
+        <h4>Event Details</h4>
+        <hr/>
+        <div class="row">
+            <tr>
+                <td>Title-</td>
+                <td>{{ object.title }}</td>
+            </tr>
+        </div>
+        <div class="row">
+            <tr>
+                <td>Start Date-</td>
+                <td>{{ object.start_date }}</td>
+            </tr>
+        </div>
+        <div class="row">
+            <tr>
+                <td>End Date-</td>
+                <td>{{ object.end_date }}</td>
+            </tr>
+        </div>
+        <div class="row">
+            <tr>
+                <td>Registration Deadline-</td>
+                <td>{{ object.registration_deadline }}</td>
+            </tr>
+        </div>
+        <div class="row">
+            <tr>
+                <td>Description-</td>
+                <td>{{ object.description }}</td>
+            </tr>
+        </div>
+        <div class="row">
+            <tr>
+                <td>Banner-</td>
+                <td>{{ object.banner }}</td>
+            </tr>
+        </div>
+        <div class="row">
+            <tr>
+                <td>Audience Type-</td>
+                <td>{{ object.audience_type }}</td>
+            </tr>
+        </div>
+        <div class="row">
+            <tr>
+                <td>Max Audience-</td>
+                <td>{{ object.max_audience }}</td>
+            </tr>
+        </div>
+        <div class="row">
+            <tr>
+                <td>Venue-</td>
+                <td>{{ object.venue }}</td>
+            </tr>
+        </div>
+        <div class="row">
+            <tr>
+                <td>Venue Coordinate-</td>
+                <td>{{ object.venue_coordinate }}</td>
+            </tr>
+        </div>
+        <div class="row">
+            <tr>
+                <td>Region-</td>
+                <td>{{ object.region }}</td>
+            </tr>
+        </div>
+        <div class="row">
+            <tr>
+                <td>Currency-</td>
+                <td>{{ object.currency }}</td>
+            </tr>
+        </div>
+        <div class="row">
+            <tr>
+                <td>Registration Fee-</td>
+                <td>{{ object.registration_fee }}</td>
+            </tr>
+        </div>
+        <div class="row">
+            <tr>
+                <td>Is open for all -</td>
+                <td>{{ object.open_for_all }}</td>
+            </tr>
+        </div>
+        <div class="row">
+            <tr>
+                <td>Is open for all -</td>
+                <td>{{ object.screening_process }}</td>
+            </tr>
+        </div>
+        <div class="row">
+            <tr>
+                <td>Registration process -</td>
+                <td>{{ object.registration_process }}</td>
+            </tr>
+        </div>
+        <div class="row">
+            <tr>
+                <td>Payment process -</td>
+                <td>{{ object.payment_process }}</td>
+            </tr>
+        </div>
+        <div class="row">
+            <tr>
+                <td>Additional fees -</td>
+                <td>{{ object.additional_fees }}</td>
+            </tr>
+        </div>
+        <div class="row">
+            <tr>
+                <td>Review event host -</td>
+                <td>{{ object.review_event_host }}</td>
+            </tr>
+        </div>
+    </table><!-- end of event_detail -->
+    <hr/>
+    <table>
+        <h4>Event Trainer</h4>
+        <hr/>
+        {% for obj in event_trainer %}
+        <div class="row">
+            <tr>
+                <td>Trainer Name</td>
+                <td>{{ obj.trainer }}</td>
+            </tr>
+        </div>
+        <div class="row">
+            <tr>
+                <td>Rating</td>
+                <td>{{ obj.rating }}</td>
+            </tr>
+        </div>
+        <div class="row">
+            <tr>
+                <td>Status</td>
+                <td>{{ obj.status }}</td>
+            </tr>
+        </div>
+        {% endfor %}
+    </table><!-- end of event_trainer -->
+    <hr/>
+    <table>
+        <h4>Event Participant</h4>
+        <hr/>
+        {% for obj in event_participants %}
+        <div class="row">
+            <tr>
+                <td>Participant Name -</td>
+                <td>{{ obj.participant_id }}</td>
+            </tr>
+        </div>
+        <div class="row">
+            <tr>
+                <td>Is registration complete -</td>
+                <td>{{ obj.registration_complete }}</td>
+            </tr>
+        </div>
+        <div class="row">
+            <tr>
+                <td>Is selection pass -</td>
+                <td>{{ obj.is_selection_pass }}</td>
+            </tr>
+        </div>
+        <div class="row">
+            <tr>
+                <td>Payment confirmed -</td>
+                <td>{{ obj.payment_confirmed }}</td>
+            </tr>
+        </div>
+        <div class="row">
+            <tr>
+                <td>Review Participant -</td>
+                <td>{{ obj.review_participant }}</td>
+            </tr>
+        </div>
+        <div class="row">
+            <tr>
+                <td>Rating Participant -</td>
+                <td>{{ obj.rating_participant }}</td>
+            </tr>
+        </div>
+        <div class="row">
+            <tr>
+                <td>Confirmation Text -</td>
+                <td>{{ obj.confirmation_text }}</td>
+            </tr>
+        </div>
+        <div class="row">
+            <tr>
+                <td>Participant Status -</td>
+                <td>{{ obj.participant_status }}</td>
+            </tr>
+        </div>
+        {% endfor %}
+    </table><!-- end of event_trainer -->
+</div>
+
+{% endblock %}

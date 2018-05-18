@@ -1,7 +1,7 @@
 import uuid
 from django.contrib.auth.models import User
 from django.db import models
-from django.contrib.postgres.fields import JSONField
+
 
 class UserProfileBasic(models.Model):
     auth = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -11,5 +11,5 @@ class UserProfileBasic(models.Model):
     gravatar = models.CharField(max_length=100)
     guid = models.UUIDField(default=uuid.uuid4, editable=False)
 
-    # class Meta:
-    #     abstract = True
+    class Meta:
+        abstract = True

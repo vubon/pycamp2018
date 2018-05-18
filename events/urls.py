@@ -1,11 +1,27 @@
 from django.urls import path
 
 
-from . import views
+from . views import (
+    EventDashboardView,
+    EventCreateView,
+    EventListView,
+    EventDetailView,
+    OrganizerProfileVew,
+    EventTrainerCreateView,
+    # EventParticipantCreateView,
+    EventDetailUpdateView,
+    EventDeleteView,
+)
 
 urlpatterns = [
-    path('', views.MainDashboardView.as_view(), name='dashboard'),
-    path('create/', views.EventCreateView.as_view(), name="event_create"),
-    path('archive/', views.EventArchiveView.as_view(), name="event_archive"),
-    path('profile/', views.OrganizerProfileVew.as_view(), name="organizer_profile"),
+    path('', EventDashboardView.as_view(), name='dashboard'),
+    path('profile/', OrganizerProfileVew.as_view(), name="organizer_profile"),
+    path('event_create/', EventCreateView.as_view(), name="event_create"),
+    path('event_trainer/', EventTrainerCreateView.as_view(), name="event_trainer"),
+    # path('event_participant/', EventParticipantCreateView.as_view(), name="event_participant"),
+    path('event_list/', EventListView.as_view(), name="event_list"),
+    path('<slug:slug>/', EventDetailView.as_view(), name="detail"),
+    path('<slug:slug>/update/', EventDetailUpdateView.as_view(), name="event_detail"),
+    path('<slug:slug>/delete/', EventDeleteView.as_view(), name="event_delete"),
+
 ]

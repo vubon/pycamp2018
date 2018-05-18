@@ -1,8 +1,9 @@
+from django.contrib.auth.models import User
 from django.db import models
 from django.contrib.postgres.fields import JSONField
 
-from userprofile.models import UserProfileBasic
-from events.models.event_basic import EventBasic
+from userprofile.models import PersonalProfile
+from events.models.event_details import EventDetail
 from events.models.event_participant_queryset import EventParticipantQuerySet
 
 
@@ -37,10 +38,10 @@ class EventParticipantManager(models.Manager):
         return self.get_queryset().paid_participant()
 
 
-class EventParticipant(EventBasic):
-    # event_user = models.OneToOneField(EventBasic, on_delete=models.CASCADE, primary_key=True)
+class EventParticipant(models.Model):
+    event_title = models.ForeignKey(EventDetail, on_delete=models.CASCADE, null=True)
     participant_id = models.ForeignKey(
-        UserProfileBasic,
+        PersonalProfile,
         on_delete=models.CASCADE,
         related_name='event_participant',
         related_query_name='participant'
@@ -49,9 +50,9 @@ class EventParticipant(EventBasic):
     registration_complete = models.BooleanField(default=False)
     is_selection_pass = models.BooleanField(default=False)
     payment_confirmed = models.BooleanField(default=False)
-    review_participant = JSONField(null=True, blank=True)
-    rating_participant = JSONField(null=True, blank=True)
-    confirmation_text = JSONField(null=True, blank=True)
+    review_participant = JSONField(default={})
+    rating_participant = JSONField(default={})
+    confirmation_text = JSONField(default={})
     participant_status = models.BooleanField(default=True)
 
-    participant = EventParticipantManager()
+    # participant = EventParticipantManager()

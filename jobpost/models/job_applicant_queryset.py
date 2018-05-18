@@ -3,7 +3,7 @@ from django.db import models
 
 class JobApplicantQuerySet(models.QuerySet):
     """
-        Detials about job applicants
+        Details about job applicants
     """
 
     def all_applicant(self):

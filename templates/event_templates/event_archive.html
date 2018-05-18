@@ -1,7 +1,7 @@
 {% extends 'base/base.html' %}
 
 {% block content %}
-
+<a href="{% url 'event_create' %}" class="btn btn-dark btn-lg">Event Create</a><!-- temporary button -->
 <div class="container-fluid">
 
     <!-- started event archive table -->
@@ -12,56 +12,29 @@
                     <i class="fa fa-align-justify"></i> Event List
                 </div>
                 <div class="card-block">
-                    <table class="table table-bordered table-striped table-sm">
+                    <table class="table table-bordered table-striped table-sm text-center">
                         <thead>
                         <tr>
-                            <th>Title</th>
-                            <th>Date-Time</th>
-                            <th>Edit</th>
+                            <th>Event Title</th>
+                            <th>Start date to End date</th>
+                            <th>Details</th>
                             <th>Details</th>
                         </tr>
                         </thead>
                         <tbody>
+                        {% for obj in object_list %}
                         <tr>
-                            <td>Vishnu Serghei</td>
-                            <td>2012/01/01</td>
-                            <td>Member</td>
+                            <td><a href="{{ obj.get_absolute_url }}" class="test-success"><span class="btn text-dark">{{ obj.title }}</span></a></td>
+                            <td><span class="text-success">{{ obj.start_date }}</span> to <span class="text-danger">{{ obj.end_date }}</span></td>
+                            <td class="text-center">
+                                <a href="{{ obj.get_absolute_url }}" class="btn btn-outline-success">Details</a>
+                            </td>
                             <td>
-                                <span class="badge badge-success">Active</span>
+                                <a href="{% url 'event_detail' obj.slug %}" class="btn btn-outline-primary">Update</a>
+                                <a href="{% url 'event_delete' obj.slug %}" class="btn btn-outline-danger"><span class="glyphicon glyphicon-trash">Delete</span></a>
                             </td>
                         </tr>
-                        <tr>
-                            <td>Zbyněk Phoibos</td>
-                            <td>2012/02/01</td>
-                            <td>Staff</td>
-                            <td>
-                                <span class="badge badge-danger">Banned</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Einar Randall</td>
-                            <td>2012/02/01</td>
-                            <td>Admin</td>
-                            <td>
-                                <span class="badge badge-default">Inactive</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Félix Troels</td>
-                            <td>2012/03/01</td>
-                            <td>Member</td>
-                            <td>
-                                <span class="badge badge-warning">Pending</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Aulus Agmundr</td>
-                            <td>2012/01/21</td>
-                            <td>Staff</td>
-                            <td>
-                                <span class="badge badge-success">Active</span>
-                            </td>
-                        </tr>
+                        {% endfor %}
                         </tbody>
                     </table>
                     <nav>
@@ -90,5 +63,14 @@
 
 </div>
 <!-- /.conainer-fluid -->
+
+
+<br/><hr/>
+
+<ul>
+{% for obj in obj_list %}
+    <li>{{ obj }}</li>
+{% endfor %}
+</ul>
 
 {% endblock %}

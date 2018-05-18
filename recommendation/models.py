@@ -1,6 +1,7 @@
+from django.contrib.auth.models import User
 from django.db import models
 
-from userprofile.models import UserProfileBasic
+from userprofile.models import PersonalProfile
 from events.models import EventDetail
 
 
@@ -8,12 +9,12 @@ from events.models import EventDetail
 
 class PersonalRecommendation(models.Model):
     profile_id = models.ForeignKey(
-        UserProfileBasic,
+        PersonalProfile,
         on_delete=models.CASCADE,
         related_name='profile'
     )
     trainer_id = models.ForeignKey(
-        UserProfileBasic,
+        PersonalProfile,
         on_delete=models.CASCADE,
         related_name='rec_trainer'
     )

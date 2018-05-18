@@ -9,12 +9,3 @@ class Migration(migrations.Migration):
     dependencies = [
         ('events', '0002_auto_20180508_2011'),
     ]
-
-    operations = [
-        migrations.AlterModelManagers(
-            name='eventtrainer',
-            managers=[
-                ('object', django.db.models.manager.Manager()),
-            ],
-        ),
-    ]

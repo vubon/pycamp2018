@@ -11,6 +11,7 @@
         </div>
         <form method="post" class="form-horizontal">
           {% csrf_token %}
+          {{ form.errors }}
           <div class="card-block">
               {% if form.non_field_errors %}
               <div class="alert alert-danger" role="alert">

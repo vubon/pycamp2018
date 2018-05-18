@@ -38,7 +38,7 @@ class EventParticipantManager(models.Manager):
 
 
 class EventParticipant(EventBasic):
-    participant_id = models.ForeignKey(
+    participant = models.ForeignKey(
         UserProfileBasic,
         on_delete=models.CASCADE,
         related_name='event_participant',
@@ -53,4 +53,4 @@ class EventParticipant(EventBasic):
     confirmation_text = JSONField(default={})
     participant_status = models.BooleanField(default=True)
 
-    participant = EventParticipantManager()
+    objects = EventParticipantManager()

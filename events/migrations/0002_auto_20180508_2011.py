@@ -14,7 +14,7 @@ class Migration(migrations.Migration):
         migrations.AlterModelManagers(
             name='eventparticipant',
             managers=[
-                ('participant', django.db.models.manager.Manager()),
+                ('objects', django.db.models.manager.Manager()),
             ],
         ),
         migrations.RemoveField(

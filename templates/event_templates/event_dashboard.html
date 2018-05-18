@@ -1,0 +1,22 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block content %}
+
+<a href="{% url 'event_create' %}" class="btn btn-dark btn-lg">Event Create</a>
+<a href="{% url 'event_list' %}" class="btn btn-dark btn-lg">Event List</a>
+<hr/>
+<div class="container-fluid">
+
+    <div class="row center col-sm 12">
+        {% for obj in object_list %}
+        <div class="col-sm-4 img-thumbnail" style="margin: 4px">
+            <a href="{{ obj.get_absolute_url }}"><img src="{{ MEDIA_URL }}{{ obj.banner.url }}" alt="{{ obj.banner }}" class="img-responsive" width="550" height="250"></a>
+            <h5>{{ obj.title }}<small> ({{ obj.start_date }})</small></h5>
+            <a href="{{ obj.get_absolute_url }}" class="btn btn-info">View Detail</a>
+        </div>
+        {% endfor %}
+    </div>
+
+</div>
+
+{% endblock %}

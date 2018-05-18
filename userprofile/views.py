@@ -5,7 +5,7 @@ from django.core.exceptions import ObjectDoesNotExist
 # from django.contrib.auth.models import User
 
 from .forms import IndividualProfileForm, BaseUserForm, OrganizationModelForm
-from .models import PersonalProfile, OrganizationProfile
+from .models import PersonalProfile, OrganizationProfile, UserProfileBasic
 
 
 def individual_profile_creation_check(user):
@@ -13,7 +13,8 @@ def individual_profile_creation_check(user):
 
 
 def dashboard(request, username):
-    return render(request, 'base/base.html')
+    user = UserProfileBasic.objects.get(auth=request.user)
+    return render(request, 'base/base.html', {'userbasic': user})
 
 
 @login_required(login_url='/signin/')

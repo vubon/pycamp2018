@@ -53,7 +53,7 @@ class PersonalProfile(UserProfileBasic):
     date_of_birth = models.DateField()
     gender = models.CharField(max_length=1, choices=GENDER_STATUS, null=True, blank=True)
     is_trainer = models.BooleanField(default=False)
-    is_student = models.BooleanField(default=False)
+    is_student = models.BooleanField(default=True)
     education = JSONField(null=True, blank=True)
     experience = models.CharField(max_length=20, choices=EXPERIENCE, null=True, blank=True)
     permanent_address = models.TextField(max_length=1000)

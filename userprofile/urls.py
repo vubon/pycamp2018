@@ -12,4 +12,5 @@ urlpatterns = [
     path('update_org_profile/', views.update_organization_profile, name='update_organization_profile'),
     path('delete_profile/', views.delete_profile, name='delete_profile'),
     path('delete_user/', views.del_user, name='del_user'),
+    path('profile_details/<int:pk>/', views.ProfileDetails.as_view(), name='profile_details')
 ]

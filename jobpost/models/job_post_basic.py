@@ -21,7 +21,7 @@ class JobPostBasicManager(models.Manager):
 
 
 class JobPostBasic(models.Model):
-    organization_id = models.ForeignKey(User,on_delete=models.CASCADE)
+    organization = models.ForeignKey(User,on_delete=models.CASCADE)
     job_title = models.CharField(max_length=256)
     salary_range = models.CharField(max_length=256)
     is_part_time = models.BooleanField(default=False)

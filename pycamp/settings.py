@@ -99,7 +99,7 @@ WSGI_APPLICATION = 'pycamp.wsgi.application'
 # }
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'testdb',
         'USER': 'faysal',
         'PASSWORD': 'pycamp2018',

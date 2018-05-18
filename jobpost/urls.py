@@ -10,6 +10,8 @@ urlpatterns = [
     path('create/',views.JobCreate, name="create"),
     path('job/<int:pk>', views.JobDetailView.as_view(), name='job_post_detail'),
     path('delete/<int:pk>', views.JobDeleteView.as_view(), name='job_post_delete'),
-    path('update/<int:pk>', views.JobUpdateView.as_view(), name='job_post_update'),
+    path('apply/<int:pk>', views.job_applicant, name='job_apply'),
+    path('jobapplicant/', views.JobApplicantListView.as_view(), name='jobapplicant'),
+
 
 ]

@@ -23,8 +23,13 @@
             <p class="card-text">{{ jobpostbasic.jobpostdetails.application_proces}}</p>
             <p class="card-text">{{ jobpostbasic.jobpostdetails.screening_details }}</p>
             <p class="card-text">{{ jobpostbasic.salary_range }}</p>
+             {% if user.is_authenticated %}
             <a href="{% url 'job_post_delete' jobpostbasic.pk %}" class="btn btn-danger">Delete</a>
-            <a href="{% url 'job_post_update' jobpostbasic.pk %}" class="btn btn-primary">Update</a>
+            <a href="{% url 'job_apply' jobpostbasic.pk %}" class="btn btn-primary">Apply</a>
+             {% else %}
+            <a href="#" class="btn btn-primary">Apply</a>
+
+            {% endif %}
         </div>
     </div>
 

@@ -5,24 +5,6 @@
 
     <h1>Job List</h1>
 
-{#    {% if jobpostbasic_list %}#}
-{#    <ul>#}
-{##}
-{#      {% for job in jobpostbasic_list %}#}
-{#      <li>#}
-{#        <a href="{{ job.get_absolute_url}}">{{ job.job_title }}</a> {{ job.position }}#}
-{#      </li>#}
-{#          <li>#}
-{#            <h2>{{ job.jobpostdetails.description }}</h2>#}
-{#            <h2>{{ job.jobpostdetails.description}}</h2>#}
-{#        </li>#}
-{#      {% endfor %}#}
-{##}
-{#    </ul>#}
-{#    {% else %}#}
-{#      <p>There are no books in the library.</p>#}
-{#    {% endif %}#}
-
     {% if jobpostbasic_list %}
          {% for job in jobpostbasic_list %}
     <div class="card">

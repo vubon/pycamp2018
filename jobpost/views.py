@@ -1,13 +1,17 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from django.views.generic import (View,TemplateView,
                                 ListView,DetailView,
                                 CreateView,DeleteView,
                                 UpdateView)
 from  .models.job_post_basic import JobPostBasic
 from  .models.job_post_detail import JobPostDetails
+from  .models.job_applicant import JobApplicant
+
+from django.contrib.auth.models import User
 
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
 from .froms import JobPostBasicForm,JobPostDetailsForm
 
@@ -40,21 +44,35 @@ def JobCreate(request):
 {'basic_form': basic_form, 'detail_form': detail_form})
 
 
-
+@method_decorator(login_required, name='dispatch')
 class JobListView(ListView):
     model = JobPostBasic
 
+
+@method_decorator(login_required, name='dispatch')
 class JobDetailView(DetailView):
     model = JobPostBasic
 
+@method_decorator(login_required, name='dispatch')
 class JobDeleteView(DeleteView):
     model = JobPostBasic
     success_url = reverse_lazy('joblist')
 
+class JobApplicantListView(ListView):
+    model = JobApplicant
+   # print(queryset)
+    template_name = 'jobpost/job_list.html'
 
-class JobUpdateView(UpdateView):
-    model = JobPostDetails
-    #basic_form = JobPostBasicForm
-    detail_form=JobPostDetailsForm
-    template_name = 'jobpost/job_post_update_form.html'
-    success_url = 'joblist'
+
+
+def job_applicant(request,pk):
+    user=request.user
+    job=get_object_or_404(JobPostBasic, pk=pk)
+    job_app=JobApplicant(applicant_id=user,job_id=job)
+    job_app.save()
+
+    return redirect('joblist')
+    # print(user)
+    # print(job)
+
+

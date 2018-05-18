@@ -33,10 +33,10 @@ def createJobView(request):
 
         if all([basic_form.is_valid(), detail_form.is_valid()]):
             basic_job_post = basic_form.save(commit=False)
-            basic_job_post.organization_id = user
+            basic_job_post.organization = user
             basic_job_post.save()
             details_job_post = detail_form.save(commit=False)
-            details_job_post.job_id = basic_job_post
+            details_job_post.job = basic_job_post
             details_job_post.save()
 
             return redirect('jobpost:detail',id=basic_job_post.id)
@@ -58,10 +58,10 @@ def updateView(request,id):
 
         if all([basic_form.is_valid(), detail_form.is_valid()]):
             basic_job_post = basic_form.save(commit=False)
-            basic_job_post.organization_id = user
+            basic_job_post.organization = user
             basic_job_post.save()
             details_job_post = detail_form.save(commit=False)
-            details_job_post.job_id = basic_job_post
+            details_job_post.job = basic_job_post
             details_job_post.save()
 
             return redirect('jobpost:detail',id=id)

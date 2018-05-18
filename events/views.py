@@ -131,10 +131,6 @@ class EventDetailUpdateView(LoginRequiredMixin, UpdateView):
 
 class EventDeleteView(DeleteView):
     model = EventDetail
-    template_name = 'event_templates/event_archive.html'
-    success_url = reverse_lazy('event:event_list')
-    # success_url = '/event/event_list/'
-
-    def get_queryset(self):
-        return EventDetail.objects.filter(owner=self.request.user)
+    template_name = 'event_templates/eventdetail_confirm_delete.html'
+    success_url = reverse_lazy('event_list')
 

@@ -41,7 +41,7 @@ class EventParticipantManager(models.Manager):
 class EventParticipant(models.Model):
     event_title = models.ForeignKey(EventDetail, on_delete=models.CASCADE, null=True)
     participant_id = models.ForeignKey(
-        PersonalProfile,
+        User,
         on_delete=models.CASCADE,
         related_name='event_participant',
         related_query_name='participant'
@@ -50,9 +50,9 @@ class EventParticipant(models.Model):
     registration_complete = models.BooleanField(default=False)
     is_selection_pass = models.BooleanField(default=False)
     payment_confirmed = models.BooleanField(default=False)
-    review_participant = JSONField(default={})
-    rating_participant = JSONField(default={})
-    confirmation_text = JSONField(default={})
+    review_participant = JSONField(default={}, null=True, blank=True)
+    rating_participant = JSONField(default={}, null=True, blank=True)
+    confirmation_text = JSONField(default={}, null=True, blank=True)
     participant_status = models.BooleanField(default=True)
 
     # participant = EventParticipantManager()

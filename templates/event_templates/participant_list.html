@@ -16,22 +16,22 @@
                         <thead>
                         <tr>
                             <th>Event Title</th>
-                            <th>Start date to End date</th>
+                            <th>User Name</th>
                             <th>Details</th>
                             <th>Details</th>
                         </tr>
                         </thead>
                         <tbody>
-                        {% for obj in object_list %}
+                        {% for obj in eventparticipant_list %}
                         <tr>
-                            <td><a href="{{ obj.get_absolute_url }}" class="test-success"><span class="btn text-dark">{{ obj.title }}</span></a></td>
-                            <td><span class="text-success">{{ obj.start_date }}</span> to <span class="text-danger">{{ obj.end_date }}</span></td>
+                            <td><a href="#" class="test-success"><span class="btn text-dark">{{ obj.event_title }}</span></a></td>
+                            <td><span class="text-success">{{ obj.participant_id }}</span></span></td>
                             <td class="text-center">
-                                <a href="{{ obj.get_absolute_url }}" class="btn btn-outline-success">Details</a>
+                                <a href="#" class="btn btn-outline-success">Details</a>
                             </td>
                             <td>
-                                <a href="{% url 'event_update' obj.slug %}" class="btn btn-outline-primary">Update</a>
-                                <a href="{% url 'event_delete' obj.slug %}" class="btn btn-outline-danger"><span class="glyphicon glyphicon-trash">Delete</span></a>
+                                <a href="#" class="btn btn-outline-primary">Update</a>
+                                <a href="#" class="btn btn-outline-danger"><span class="glyphicon glyphicon-trash">Delete</span></a>
                             </td>
                         </tr>
                         {% endfor %}

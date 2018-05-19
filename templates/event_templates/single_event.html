@@ -2,6 +2,9 @@
 
 {% block content %}
 
+<img src="{{ MEDIA_URL }}{{ object.banner.url }}" alt="{{ object.banner }}" class="img-responsive img-thumbnail" width="1600" height="400">
+<br /><br />
+<a href="{% url 'e_apply' object.slug %}" class="btn btn-info">Apply</a><br/><br/>
 <div class="container-fluid">
     <table>
         <h4>Event Details</h4>
@@ -201,6 +204,16 @@
         </div>
         {% endfor %}
     </table><!-- end of event_trainer -->
+
+    <div class="row">
+        <div class="col-md-5"></div>
+        <div class="col-md-7">
+            <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-success btn-lg">Apply</button>
+            </form>
+        </div>
+    </div><br/><br/>
 </div>
 
 {% endblock %}

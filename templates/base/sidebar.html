@@ -18,14 +18,14 @@
             </li>
 
             <li class="nav-item nav-dropdown">
-                <a class="nav-link" href="#"><i class="icon-star"></i> Ongoing</a>
+                <a class="nav-link" href="{% url 'event_create' %}"><i class="icon-star"></i> Event Create</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="widgets.html"><i class="icon-calculator"></i> Upcoming <span
+                <a class="nav-link" href="{% url 'event_list' %}"><i class="icon-calculator"></i> Event Lists <span
                         class="badge badge-info">NEW</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="charts.html"><i class="icon-pie-chart"></i> Completed</a>
+                <a class="nav-link" href="{% url 'participant_list' %}"><i class="icon-pie-chart"></i> Participant List</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="charts.html"><i class="icon-pie-chart"></i> Wishlist</a>

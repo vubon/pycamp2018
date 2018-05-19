@@ -1,0 +1,75 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<a href="{% url 'event_create' %}" class="btn btn-dark btn-lg">Event Create</a><!-- temporary button -->
+<div class="container-fluid">
+
+    <!-- started event archive table -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    <i class="fa fa-align-justify"></i> Event List
+                </div>
+                <div class="card-block">
+                    <table class="table table-bordered table-striped table-sm text-center">
+                        <thead>
+                        <tr>
+                            <th>Event Title</th>
+                            <th>Participant</th>
+                            <th>Details</th>
+                            <th>Details</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for obj in object_list %}
+                        <tr>
+                            <td><a href="#" class="test-success"><span class="btn text-dark">Something</span></a></td>
+                            <td><span class="text-success">Some one</span></span></td>
+                            <td class="text-center">
+                                <a href="#" class="btn btn-outline-success">Details</a>
+                            </td>
+                            <td>
+                                <a href="#" class="btn btn-outline-danger"><span class="glyphicon glyphicon-trash">Delete</span></a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    <nav>
+                        <ul class="pagination">
+                            <li class="page-item"><a class="page-link" href="#">Prev</a>
+                            </li>
+                            <li class="page-item active">
+                                <a class="page-link" href="#">1</a>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="#">2</a>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="#">3</a>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="#">4</a>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="#">Next</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <!--/.col-->
+    </div>
+    <!-- end event archive table -->
+
+</div>
+<!-- /.conainer-fluid -->
+
+
+<br/><hr/>
+
+<ul>
+{% for obj in obj_list %}
+    <li>{{ obj }}</li>
+{% endfor %}
+</ul>
+
+{% endblock %}

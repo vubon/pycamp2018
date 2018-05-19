@@ -1,7 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView, CreateView, ListView, DetailView, UpdateView, DeleteView
 from django.views.generic.detail import SingleObjectMixin
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
 
 from .forms import EventDetailForm, EventParticipantForm, EventTrainerForm
@@ -133,4 +133,27 @@ class EventDeleteView(DeleteView):
     model = EventDetail
     template_name = 'event_templates/eventdetail_confirm_delete.html'
     success_url = reverse_lazy('event_list')
+
+
+def event_participant(request, slug):
+    user = request.user
+    event = get_object_or_404(EventDetail, slug=slug)
+    job_reg = EventParticipant(event_title=event, participant_id=user)
+    job_reg.save()
+
+    redirect('event_participant')
+
+
+class EventParticipantListView(LoginRequiredMixin, ListView):
+    login_url = '/'
+    model = EventParticipant
+    template_name = 'event_templates/event_participant_view.html'
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        return context
+
+    def get_queryset(self):
+        return EventParticipant.objects.all()
+        # return EventParticipant.objects.filter(owner=self.request.user)
 

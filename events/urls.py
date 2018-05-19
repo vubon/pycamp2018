@@ -11,6 +11,7 @@ from . views import (
     # EventParticipantCreateView,
     EventDetailUpdateView,
     EventDeleteView,
+    EventParticipantListView,
 )
 
 urlpatterns = [
@@ -20,8 +21,8 @@ urlpatterns = [
     path('event_trainer/', EventTrainerCreateView.as_view(), name="event_trainer"),
     # path('event_participant/', EventParticipantCreateView.as_view(), name="event_participant"),
     path('event_list/', EventListView.as_view(), name="event_list"),
+    path('event_participant/', EventParticipantListView.as_view(), name="event_participant"),
     path('<slug:slug>/', EventDetailView.as_view(), name="detail"),
     path('<slug:slug>/update/', EventDetailUpdateView.as_view(), name="event_detail"),
     path('delete/<slug:slug>', EventDeleteView.as_view(), name="event_delete"),
-
 ]

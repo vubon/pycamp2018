@@ -3,7 +3,7 @@
         <ul class="nav">
             {% if not userbasic.is_organization %}
       <li class="nav-item">
-                <a class="nav-link" href="/"><i class="icon-speedometer"></i> My Profile </a>
+                <a class="nav-link" href="/@{{ request.user.get_username }}/profile_details/{{ request.user.id }}"><i class="icon-speedometer"></i> My Profile </a>
                 <a class="nav-link" href="/@{{ request.user.get_username }}/update_profile/"><i class="icon-speedometer"></i> Update Profile</a>
             </li>
     {% else %}

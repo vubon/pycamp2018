@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from django.core.exceptions import ObjectDoesNotExist
 from django.views.generic import FormView, DetailView
 
-from .models import UserProfileBasic
+# from .models import UserProfileBasic
 from django.contrib.auth.models import User
 
 from .forms import IndividualProfileForm, BaseUserForm, OrganizationModelForm
@@ -131,6 +131,8 @@ def del_user(request, username):
 class ProfileDetails(DetailView):
     model = UserProfileBasic
     template_name = 'userprofile/profile_details.html'
+
+
 
 # class CreateProfile(FormView):
 #     form_class = IndividualProfileForm

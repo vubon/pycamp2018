@@ -30,6 +30,7 @@
             <p class="card-text">Deadline: {{ basic.deadline }}</p>
             <a href="{% url 'jobpost:delete' id=basic.id %}" onclick="return confirm('Are you sure you want to delete this item?');" class="btn btn-danger">Delete</a>
             <a href="{% url 'jobpost:edit' id=basic.id %}" class="btn btn-primary">Update</a>
+            <a href="{% url 'jobpost:job_apply' id=basic.id %}" class="btn btn-primary">Apply</a>
         </div>
     </div>
 

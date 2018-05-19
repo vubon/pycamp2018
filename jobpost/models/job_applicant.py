@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 from userprofile.models.personal_profile import PersonalProfile
 from jobpost.models.job_post_basic import JobPostBasic
@@ -22,7 +23,7 @@ class JobApplicantManager(models.Manager):
 
 class JobApplicant(models.Model):
     job = models.ForeignKey(JobPostBasic,on_delete=models.CASCADE)
-    applicant = models.ForeignKey(PersonalProfile,on_delete=models.CASCADE)
+    applicant = models.ForeignKey(User,on_delete=models.CASCADE)
     selection_confirmation= models.BooleanField(default=False)
     call_for_interview = models.BooleanField(default=False)
 

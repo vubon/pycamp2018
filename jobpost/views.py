@@ -5,6 +5,7 @@ from django.views.generic import (View,TemplateView,
                                 UpdateView)
 from  .models.job_post_basic import JobPostBasic
 from  .models.job_post_detail import JobPostDetails
+from .models.job_applicant import JobApplicant
 
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
@@ -77,3 +78,18 @@ def deleteView(request,id):
     basic_object.status = False
     basic_object.save()
     return render(request,'jobpost/job_post_dashboard.html',{'job_list':JobPostBasic.objects.job_title()})
+
+
+class JobApplicantListView(ListView):
+    model = JobApplicant
+   # print(queryset)
+    template_name = 'jobpost/jobapplicant_list.html'
+
+
+
+def job_applicant(request,id):
+    user=request.user
+    job=get_object_or_404(JobPostBasic, id=id)
+    job_app=JobApplicant(applicant=user,job=job)
+    job_app.save()
+    return redirect('jobpost:index')

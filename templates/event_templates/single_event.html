@@ -6,6 +6,8 @@
     <table>
         <h4>Event Details</h4>
         <hr/>
+        <a href="{% url 'event_participant' object.slug %}" class="btn btn-primary">Apply</a>
+        <br/>
         <div class="row">
             <tr>
                 <td>Title-</td>
@@ -205,10 +207,7 @@
     <div class="row">
         <div class="col-md-5"></div>
         <div class="col-md-7">
-            <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
-                {% csrf_token %}
-                <button type="submit" class="btn btn-success btn-lg">Apply</button>
-            </form>
+
         </div>
     </div><br/><br/>
 </div>

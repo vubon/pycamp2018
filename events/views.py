@@ -8,6 +8,7 @@ from .forms import EventDetailForm, EventParticipantForm, EventTrainerForm
 
 
 from .models import EventDetail, EventTrainer, EventParticipant
+from userprofile.models import PersonalProfile
 
 
 class EventDashboardView(LoginRequiredMixin, ListView):
@@ -57,24 +58,6 @@ class EventTrainerCreateView(LoginRequiredMixin, CreateView):
         instance = form.save(commit=True)
         instance.owner = self.request.user
         return super(EventTrainerCreateView, self).form_valid(form)
-
-
-"""
-# How to use Participants views
-class EventParticipantCreateView(LoginRequiredMixin, CreateView):
-    form_class = EventParticipantForm
-    login_url = '/'
-    template_name = 'event_templates/event_participant.html'
-    success_url = '/event/event_list/'
-
-    def get(self, request):
-        return render(request, self.template_name, {"event_participant": self.form_class})
-
-    def form_valid(self, form):
-        instance = form.save(commit=True)
-        instance.owner = self.request.user
-        return super(EventParticipantCreateView, self).form_valid(form)
-"""
 
 
 class EventListView(LoginRequiredMixin, ListView):
@@ -135,13 +118,17 @@ class EventDeleteView(DeleteView):
     success_url = reverse_lazy('event_list')
 
 
+"""
+
+"""
 def event_participant(request, slug):
     user = request.user
     event = get_object_or_404(EventDetail, slug=slug)
-    job_reg = EventParticipant(event_title=event, participant_id=user)
-    job_reg.save()
+    # job_reg = EventParticipant(participant_id=user, event_title=event)
+    event_reg = EventParticipant(participant_id=user, event_title=event)
+    event_reg.save()
 
-    redirect('event_participant')
+    return redirect('event_participant')
 
 
 class EventParticipantListView(LoginRequiredMixin, ListView):
@@ -154,6 +141,5 @@ class EventParticipantListView(LoginRequiredMixin, ListView):
         return context
 
     def get_queryset(self):
-        return EventParticipant.objects.all()
-        # return EventParticipant.objects.filter(owner=self.request.user)
+        return EventParticipant.objects.filter(owner=self.request.user)
 

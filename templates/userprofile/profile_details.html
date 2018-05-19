@@ -7,11 +7,11 @@
 {% endblock %}
 
 {% block content %}
-    {% if object.is_organization %}
-        {{ object.auth.o }}
-    {% else %}
+{#    {% if object.is_organization %}#}
+{#        {{ object.auth.o }}#}
+{#    {% else %}#}
 {#        {{ object.personalprofile.first_name }}#}
-    {% endif %}
+{#    {% endif %}#}
 
 
     <div class="container">
@@ -28,31 +28,27 @@
                     <span>Freelance Web Designer</span>
                 </div>
                 <p>
-                    Credibly embrace visionary internal or "organic" sources and business benefits. Collaboratively
-                    integrate efficient portals rather than customized customer service. Assertively deliver
-                    frictionless services via leveraged interfaces. Conveniently evisculate accurate sources and
-                    process-centric expertise.Energistically fabricate customized imperatives through cooperative
-                    catalysts for change.
+                    {{ object.personalprofile.about }}
                 </p>
 
 
                 <div class="row">
                     <div class="col-md-3">
                         <div class="personal-details">
-                            <strong>OCTOBER 17, 1996</strong>
+                            <strong>{{ object.personalprofile.date_of_birth }}</strong>
                             <small>BIRTH</small>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="personal-details">
-                            <strong>UNITED KINGDOM</strong>
-                            <small>NATIONALITY</small>
+                            <strong>{{ object.personalprofile.current_address }}</strong>
+                            <small>Current Address</small>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="personal-details">
-                            <strong>ENGLISH <span>(NATIVE)</span>, FRENCH <span>(INTERMEDIATE)</span></strong>
-                            <small>LANGUAGE</small>
+                            <strong>{{ object.personalprofile.permamnent_address }}</strong>
+                            <small>Permanent Address</small>
                         </div>
                     </div>
                 </div>

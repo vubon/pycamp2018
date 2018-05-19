@@ -1,9 +1,8 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import login_required, user_passes_test
-from django.core.exceptions import ObjectDoesNotExist
-from django.views.generic import FormView, DetailView
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+from django.views.generic import DetailView
 
-# from .models import UserProfileBasic
 from django.contrib.auth.models import User
 
 from .forms import IndividualProfileForm, BaseUserForm, OrganizationModelForm
@@ -17,13 +16,13 @@ def individual_profile_creation_check(user):
 
 
 @profile_required()
+@login_required(login_url='/signin/')
 def dashboard(request, username):
     user = UserProfileBasic.objects.get(auth=request.user)
     return render(request, 'base/base.html', {'userbasic': user})
 
 
 @login_required(login_url='/signin/')
-# @user_passes_test(individual_profile_creation_check)
 def create_profile(request, username):
     if request.method == 'POST':
         user_form = BaseUserForm(request.POST, instance=request.user)
@@ -43,6 +42,7 @@ def create_profile(request, username):
 
 
 @login_required(login_url='/signin/')
+@profile_required()
 def update_profile(request, username):
     user = request.user
     if request.method == 'POST':
@@ -84,6 +84,7 @@ def create_organization_profile(request, username):
 
 
 @login_required(login_url='/signin/')
+@profile_required()
 def update_organization_profile(request, username):
     if request.method == 'POST':
         # user_form = BaseUserForm(request.POST, instance=request.user)
@@ -104,6 +105,8 @@ def update_organization_profile(request, username):
                   {'profile_form': organization_profile_form})
 
 
+@login_required(login_url='/signin/')
+@profile_required()
 def delete_profile(request, username):
     user = request.user
     user.is_active = False
@@ -131,35 +134,7 @@ def del_user(request, username):
     # return render(request, 'front.html')
 
 
+@method_decorator(profile_required(), name='get')
 class ProfileDetails(DetailView):
     model = UserProfileBasic
     template_name = 'userprofile/profile_details.html'
-
-
-
-# class CreateProfile(FormView):
-#     form_class = IndividualProfileForm
-#     template_name = 'userprofile/create_profile.html'
-#
-#     def get(self, request, *args, **kwargs):
-#         user = get_object_or_404(User, username=request.user)
-#         initial_data = {
-#             'first_name': user.first_name,
-#             'last_name': user.last_name,
-#
-#         }
-#         form = self.form_class(initial=initial_data)
-#         return render(request, self.template_name, {'form': form})
-#
-#     def post(self, request, *args, **kwargs):
-#         # print(request.POST)
-#         user = get_object_or_404(User, username=request.user)
-#         initial_data = {
-#             'first_name': user.first_name,
-#             'last_name': user.last_name
-#         }
-#         form = IndividualProfileForm(data=request.POST, initial=)
-#         # first_name = form.cleaned_data['first_name']
-#         print(form.__dict__)
-#         return render(request, self.template_name, {'form': form})
-

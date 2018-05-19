@@ -1,0 +1,70 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+
+    <h1>Job List</h1>
+
+{#    {% if job_list %}#}
+{#    <ul>#}
+{##}
+{#      {% for job in job_list %}#}
+{#      <li>#}
+{#        <a href="{%url 'jobpost:detail' id=item.id%}">{{ job.job_title }}</a> {{ job.position }}#}
+{#      </li>#}
+{#          <li>#}
+{#            <h2>{{ job.salary_range }}</h2>#}
+{#            <h2>{{ job.deadline}}</h2>#}
+{#        </li>#}
+{#      {% endfor %}#}
+{##}
+{#    </ul>#}
+{#    {% else %}#}
+{#      <p>There are no books in the library.</p>#}
+{#    {% endif %}#}
+
+    {% if job_list %}
+         {% for job in job_list %}
+    <div class="card">
+        <div class="card-header">
+           <h3>{{ job.job_title }}</h3>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title"> Vacancy: {{ job.vacancy }}</h5>
+            <p class="card-text"> Deadline: {{ job.deadline }}</p>
+            <a href="{%url 'jobpost:detail' id=job.id%}" class="btn btn-primary">Details</a>
+        </div>
+    </div>
+        {% endfor %}
+    {% endif %}
+
+{% endblock %}
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <h1>Welcome to DashBoard</h1>
+    <h3> <a href="{%url 'jobpost:create'%}">CREATE JOB POST</a> </h3>
+    <p>
+        {% for item in job_list%}
+        <a href="{%url 'jobpost:detail' id=item.id%}">
+          {{item.job_title}}
+          {{item.salary_range}}
+        </a>
+
+        <br>
+        {% endfor %}
+    </p>
+  </body>
+</html> -->

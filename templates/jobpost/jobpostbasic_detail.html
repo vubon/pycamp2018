@@ -1,0 +1,70 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+{#   <h1>Job List</h1>#}
+{##}
+{#    <h1>{{ jobpostbasic.job_title }}</h1><br>#}
+{#    <h1>{{ jobpostbasic.position }}</h1><br>#}
+{#    <h1>{{ jobpostbasic.salary_range }}</h1><br>#}
+{#    <h1>{{ jobpostbasic.stack }}</h1><br>#}
+{#    <h1>{{ jobpostbasic.vacancy }}</h1><br>#}
+{#    <h1>{{jobpostbasic.jobpostdetails.description }}</h1><br>#}
+{#    <h1>{{jobpostbasic.jobpostdetails.application_process }}</h1><br>#}
+{#    <h1>{{jobpostbasic.jobpostdetails.screening_details }}</h1><br>#}
+
+    <div class="card">
+        <div class="card-header">
+            <h3>{{ basic.job_title }}</h3>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title"> {{ basic.position }}</h5>
+            <p class="card-title">Vacancy: {{basic.vacancy }}</p>
+            <p class="card-text">Stack: {{ basic.stack}}</p>
+            <p class="card-text">Job Nature: {{ basic.is_part_time}}</p>
+            <p class="card-text">Salary Range: {{ basic.salary_range }}</p>
+
+            <p class="card-text">Description: {{ detail.description }}</p>
+            <p class="card-text">Application Process: {{ detail.application_process }}</p>
+            <p class="card-text">Screening Process: {{ detail.screening_details }}</p>
+
+            <p class="card-text">Deadline: {{ basic.deadline }}</p>
+            <a href="{% url 'jobpost:delete' id=basic.id %}" onclick="return confirm('Are you sure you want to delete this item?');" class="btn btn-danger">Delete</a>
+            <a href="{% url 'jobpost:edit' id=basic.id %}" class="btn btn-primary">Update</a>
+        </div>
+    </div>
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <title></title>
+  </head>
+  <body>
+    <h1>THis is me</h1>
+    <h3>
+        {{basic.job_title}}
+        {{basic.salary_range}}
+        {{basic.deadline}}
+        {{detail.screening_details}}
+    </h3>
+
+    <h2> <a href="{% url 'jobpost:edit' id=basic.id %}">Update</a> </h2>
+
+    <h3> <a href="{% url 'jobpost:delete' id=basic.id %}" onclick="return confirm('Are you sure you want to delete this item?');">Delete</a> </h3>
+
+
+  </body>
+</html> -->

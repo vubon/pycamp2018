@@ -1,0 +1,104 @@
+{% extends 'base/base.html' %}
+{% load widget_tweaks %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <strong>Create Job Post</strong>
+                </div>
+                <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+                    {% csrf_token %}
+                    <div class="card-block">
+                        {#  {{ form.as_p }}#}
+{#                        {% if form.non_field_errors %}#}
+{#                            <div class="alert alert-danger" role="alert">#}
+{#                                {% for error in form.non_field_errors %}#}
+{#                                    {{ error }}#}
+{#                                {% endfor %}#}
+{#                            </div>#}
+{#                        {% endif %}#}
+
+                        {% for field in basic_form.visible_fields %}
+                            <div class="form-group row">
+                                <label for="{{ field.auto_id }}" class="col-md-3 col-form-label">{{ field.label_tag }}</label>
+                                {% if form.is_bound %}
+                                    {% if field.errors %}
+                                         {% render_field field class="form-control is-invalid" %}
+                                        {% for error in field.errors %}
+                                            <div class="invalid-feedback">
+                                                {{ error }}
+                                            </div>
+                                        {% endfor %}
+                                    {% else %}
+                                            {% render_field field class="form-control is-valid" %}
+                                    {% endif %}
+                                {% else %}
+                                   <div class="col-md-6">
+                                     {% render_field field class="form-control" %}
+                                   </div>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                        {% for field in detail_form.visible_fields %}
+                            <div class="form-group row">
+                                <label for="{{ field.auto_id }}" class="col-md-3 col-form-label">{{ field.label_tag }}</label>
+                                {% if form.is_bound %}
+                                    {% if field.errors %}
+                                         {% render_field field class="form-control is-invalid" %}
+                                        {% for error in field.errors %}
+                                            <div class="invalid-feedback">
+                                                {{ error }}
+                                            </div>
+                                        {% endfor %}
+                                    {% else %}
+                                            {% render_field field class="form-control is-valid" %}
+                                    {% endif %}
+                                {% else %}
+                                   <div class="col-md-6">
+                                     {% render_field field class="form-control" %}
+                                   </div>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="card-footer">
+                        <button type="submit" name="save-event" class="btn btn-sm btn-primary"><i
+                                class="fa fa-dot-circle-o"></i> Publish
+                        </button>
+                        <button type="reset" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Reset</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!--/.row-->
+
+{% endblock %}
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <form  method="POST">
+      {% csrf_token %}
+      {{ basic_form.as_p }}
+      {{ detail_form.as_p }}
+
+      <input type="submit" name="" value="Submit">
+
+    </form>
+
+  </body>
+</html> -->

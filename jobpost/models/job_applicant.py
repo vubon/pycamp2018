@@ -5,7 +5,7 @@ from jobpost.models.job_post_basic import JobPostBasic
 from jobpost.models.job_applicant_queryset import JobApplicantQuerySet
 
 
-class JobApplicantManager(models.Model):
+class JobApplicantManager(models.Manager):
     """
         Find Job applicants
     """
@@ -21,8 +21,8 @@ class JobApplicantManager(models.Model):
 
 
 class JobApplicant(models.Model):
-    job_id = models.ForeignKey(JobPostBasic,on_delete=models.CASCADE)
-    applicant_id = models.ForeignKey(PersonalProfile,on_delete=models.CASCADE)
+    job = models.ForeignKey(JobPostBasic,on_delete=models.CASCADE)
+    applicant = models.ForeignKey(PersonalProfile,on_delete=models.CASCADE)
     selection_confirmation= models.BooleanField(default=False)
     call_for_interview = models.BooleanField(default=False)
 

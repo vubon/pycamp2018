@@ -1,4 +1,7 @@
+import uuid
+
 from django.db import models
+from django.contrib.auth.models import User
 
 from jobpost.models.job_post_basic_queryset import JobPostQuerySet
 from userprofile.models.organization_profile import OrganizationProfile
@@ -21,12 +24,7 @@ class JobPostBasicManager(models.Manager):
 
 
 class JobPostBasic(models.Model):
-    class Meta:
-        permissions = (
-            ("view_post", "Can see job post"),
-        )
-
-    organization_id = models.ForeignKey(OrganizationProfile, on_delete=models.CASCADE)
+    organization = models.ForeignKey(User,on_delete=models.CASCADE)
     job_title = models.CharField(max_length=256)
     salary_range = models.CharField(max_length=256)
     is_part_time = models.BooleanField(default=False)
@@ -34,10 +32,8 @@ class JobPostBasic(models.Model):
     stack = models.TextField()
     vacancy = models.PositiveIntegerField()
     deadline = models.DateField()
-
-    def create_job_post(self, request_data):
-
-        pass
+    status = models.BooleanField(default=True)
+    guid = models.UUIDField(default=uuid.uuid4, editable=False)
 
     objects = JobPostBasicManager()
 

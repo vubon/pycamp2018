@@ -26,6 +26,7 @@ urlpatterns = [
     path('event/', include('events.urls')),
     path('', include('auth_module.urls')),
     path('@<username>/', include(('userprofile.urls', 'userprofile'), namespace='userprofile')),
+    path('job/',include('jobpost.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)\
               + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

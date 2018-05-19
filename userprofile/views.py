@@ -9,11 +9,14 @@ from django.contrib.auth.models import User
 from .forms import IndividualProfileForm, BaseUserForm, OrganizationModelForm
 from .models import PersonalProfile, OrganizationProfile, UserProfileBasic
 
+from auth_module.decorators import profile_required
+
 
 def individual_profile_creation_check(user):
     return not user.user_profile.is_organization
 
 
+@profile_required()
 def dashboard(request, username):
     user = UserProfileBasic.objects.get(auth=request.user)
     return render(request, 'base/base.html', {'userbasic': user})

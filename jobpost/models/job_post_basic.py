@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from jobpost.models.job_post_basic_queryset import JobPostQuerySet
 from userprofile.models.organization_profile import OrganizationProfile
 
+
 class JobPostBasicManager(models.Manager):
     """
         Find Job query with job title
@@ -33,7 +34,6 @@ class JobPostBasic(models.Model):
     deadline = models.DateField()
     status = models.BooleanField(default=True)
     guid = models.UUIDField(default=uuid.uuid4, editable=False)
-
 
     objects = JobPostBasicManager()
 

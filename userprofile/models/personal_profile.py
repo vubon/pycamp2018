@@ -1,35 +1,15 @@
 from django.db import models
 from django.contrib.postgres.fields import JSONField
-
 from userprofile.models.user_profile_basic import UserProfileBasic
-from userprofile.models.personal_profile_queryset import PersonalProfileQuerySet
 
-
-class PersonalProfileManager(models.Manager):
-    """
-        Find Trainee or Regular  User
-        Find Trainer
-    """
-
-    def get_queryset(self):
-        return PersonalProfileQuerySet(self.model, using = self._db)
-
-    def regular_user(self):
-        """
-            return regular user / Trainee
-        """
-
-        return self.get_queryset().regular_user()
-
-    def trainer(self):
-        """
-            return trainer
-        """
-
-        return self.get_queryset().trainer()
-        
 
 class PersonalProfile(UserProfileBasic):
+    class Meta:
+        permissions = (
+            ('create_profile', 'can create profile'),
+            ('update_profile', 'can update profile'),
+        )
+
     GENDER_STATUS = (
         ('m', 'Male'),
         ('f', 'Female'),
@@ -47,7 +27,7 @@ class PersonalProfile(UserProfileBasic):
     date_of_birth = models.DateField()
     gender = models.CharField(max_length=1, choices=GENDER_STATUS, null=True, blank=True)
     is_trainer = models.BooleanField(default=False)
-    is_student = models.BooleanField(default=False)
+    is_student = models.BooleanField(default=True)
     education = JSONField(null=True, blank=True)
     experience = models.CharField(max_length=20, choices=EXPERIENCE, null=True, blank=True)
     permanent_address = models.TextField(max_length=1000)
@@ -56,7 +36,7 @@ class PersonalProfile(UserProfileBasic):
     official_contact = models.TextField()
     reference = models.TextField()
 
-    object = PersonalProfileManager()
-
     def __str__(self):
-        return self.auth.first_name + ' ' + self.auth.last_name
+        if self.auth:
+            return self.auth.first_name + ' ' + self.auth.last_name
+        return "auth does not exist"

@@ -1,0 +1,50 @@
+{% extends 'base/base.html' %}
+{% load widget_tweaks %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <strong>Profile</strong>
+                </div>
+                <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+                    {% csrf_token %}
+                    <div class="card-block">
+                    {{ profile_form.errors }}
+                        {% for field in profile_form.visible_fields %}
+                            <div class="form-group row">
+                                <label for="{{ field.auto_id }}" class="col-md-3 col-form-label">{{ field.label_tag }}</label>
+                                {% if form.is_bound %}
+                                    {% if field.errors %}
+                                         {% render_field field class="form-control is-invalid" %}
+                                        {% for error in field.errors %}
+                                            <div class="invalid-feedback">
+                                                {{ error }}
+                                            </div>
+                                        {% endfor %}
+                                    {% else %}
+                                            {% render_field field class="form-control is-valid" %}
+                                    {% endif %}
+                                {% else %}
+                                   <div class="col-md-6">
+                                     {% render_field field class="form-control" %}
+                                   </div>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="card-footer">
+                        <button type="submit" name="save-event" class="btn btn-sm btn-primary"><i
+                                class="fa fa-dot-circle-o"></i> Save
+                        </button>
+                        <button type="reset" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Reset</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!--/.row-->
+
+{% endblock %}

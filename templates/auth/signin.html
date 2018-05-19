@@ -8,16 +8,21 @@
             <div class="card-header">
                 <strong>Sign In</strong>
             </div>
+            {% if form.non_field_errors %}
+                <h1>{{ form.non_field_errors }}</h1>
+            {% endif %}
             <form method="post" class="form-horizontal">
                 {% csrf_token %}
                 <div class="card-block">
-                    {% if form.non_field_errors %}
-                    <div class="alert alert-danger" role="alert">
-                        {% for error in form.non_field_errors %}
-                            {{ error }}
-                        {% endfor %}
-                    </div>
-                    {% endif %}
+                {{ form.non_field_errors }}
+{#                    {% if form.non_field_errors %}#}
+{#                    <div class="alert alert-danger" role="alert">#}
+{#                        {% for error in form.non_field_errors %}#}
+{#                            {{ error }}#}
+{#                            <p>ERRORRRR!</p>#}
+{#                        {% endfor %}#}
+{#                    </div>#}
+{#                    {% endif %}#}
 
                     {% for field in form.visible_fields %}
                             <div class="form-group row">
@@ -43,7 +48,7 @@
                 <!--/.row-->
                 <button type="submit" class="btn btn-success">Sign In</button>
                     <hr>
-                <p><a href="#">Forgot Password?</a></p>
+                <p><a href="{% url 'password_reset' %}">Forgot Password?</a></p>
             </form>
         </div>
     </div>

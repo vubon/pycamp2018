@@ -90,13 +90,24 @@ WSGI_APPLICATION = 'pycamp.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'pycamp2018',
-        'USER': 'shafik',
-        'PASSWORD': 'shafik',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'NAME': os.getenv('DATABASE_NAME'),
+        'USER': os.getenv('DATABASE_USER'),
+        'PASSWORD': os.getenv('DATABASE_PASSWORD'),
+        'HOST': os.getenv('DATABASE_HOST'),
+        'PORT': os.getenv('DATABASE_PORT'),
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'testdb',
+#         'USER': 'faysal',
+#         'PASSWORD': 'pycamp2018',
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#     }
+# }
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.sqlite3',
@@ -143,7 +154,14 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
+    '/var/www/static/',
 )
 
 # TEST EMAIL
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+
+LOGIN_URL = '/signin/'
+# media files
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media/event_img")

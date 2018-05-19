@@ -15,6 +15,12 @@ def redirect_authenticated_user(user):
 def home(request):
     return render(request, 'home.html')
 
+# def home(request):
+#    if request.user.is_authenticated:
+#        return redirect('home')
+#    else:
+#        return render(request,'auth/login.html')
+
 
 # @user_passes_test(redirect_authenticated_user)
 def individual_signup(request):
@@ -33,7 +39,7 @@ def individual_signup(request):
             # return redirect('home')
 
     form = IndividualSignUpForm()
-    return render(request, 'auth/signup.html', {'form': form})
+    return render(request, 'auth/register.html', {'form': form})
 
 
 def organization_signup(request):
@@ -52,7 +58,7 @@ def organization_signup(request):
             # return HttpResponse('<h1>This is Organization Profile creation form</h1>')
 
     form = OrganizationSignUpForm()
-    return render(request, 'auth/signup.html', {'form': form})
+    return render(request, 'auth/register.html', {'form': form})
 
 
 # @user_passes_test(redirect_authenticated_user)
@@ -70,7 +76,7 @@ def signin(request):
                 # return redirect('home')
                 return redirect(reverse('userprofile:dashboard', kwargs={'username': username}))
     form = SignInForm()
-    return render(request, 'auth/signin.html', {'form': form})
+    return render(request, 'auth/login.html', {'form': form})
 
 
 def signout(request):

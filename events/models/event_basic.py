@@ -3,11 +3,14 @@ from django.db import models
 
 from django.contrib.postgres.fields import JSONField
 from django.core.files.storage import FileSystemStorage
+from django.contrib.auth import settings
 
 from events.models.event_basic_queryset import EventQuerySet
 
+
 # Create your models here.
-fs = FileSystemStorage(location='')
+fs = FileSystemStorage(location='media/event_img/')
+User = settings.AUTH_USER_MODEL
 
 
 class EventBasicManager(models.Manager):
@@ -35,24 +38,29 @@ class EventBasicManager(models.Manager):
         """
         pass
 
+
 class EventBasic(models.Model):
     # unique_event = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    title = models.CharField(max_length=50, default='')
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    title = models.CharField(max_length=50, default='', null=True)
     start_date = models.DateField(auto_now_add=False, null=True)
     end_date = models.DateField(null=True, blank=True)
     registration_deadline = models.DateField(null=True, blank=True)
     description = models.TextField(blank=True)
     banner = models.ImageField(storage=fs, null=True)
-    audienceT_type = JSONField(default={})
+    audience_type = JSONField(default={})
     max_audience = models.IntegerField(default=0)
-    venue = JSONField(default={})
-    venue_coordinate = JSONField(default={})
+    venue = models.CharField(max_length=150)
+    venue_coordinate = models.CharField(max_length=100)
     region = JSONField(default={})
     currency = JSONField(default={})
     registration_fee = models.FloatField(null=True)
+    slug = models.SlugField(null=True, blank=True, unique=True)
 
     objects = EventBasicManager()
 
+    class Meta:
+        abstract = True
+
     def __str__(self):
         return self.title
-

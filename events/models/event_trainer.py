@@ -1,9 +1,11 @@
+from django.contrib.auth.models import User
 from django.db import models
 from django.contrib.postgres.fields import JSONField
 
-from userprofile.models import UserProfileBasic
-from events.models.event_basic import EventBasic
+from userprofile.models import PersonalProfile
+from events.models.event_details import EventDetail
 from events.models.event_trainer_queryset import EventTrainerQuerySet
+
 
 class EventTrainerManager(models.Manager):
     """
@@ -23,14 +25,15 @@ class EventTrainerManager(models.Manager):
         return self.get_queryset().event_trainer()
 
 
-class EventTrainer(EventBasic):
+class EventTrainer(models.Model):
+    event_title = models.ForeignKey(EventDetail, on_delete=models.CASCADE, null=True)
     trainer = models.ForeignKey(
-        UserProfileBasic,
+        PersonalProfile,
         on_delete=models.CASCADE,
         related_name='event_trainer',
         related_query_name='trainer'
     )
-    rating = JSONField(default={})
+    rating = models.FloatField(default=0, max_length=10)
     status = models.BooleanField(default=True)
 
-    object = EventTrainerManager()
+    # object = EventTrainerManager()

@@ -1,8 +1,9 @@
+from django.contrib.auth.models import User
 from django.db import models
 from django.contrib.postgres.fields import JSONField
 
-from userprofile.models import UserProfileBasic
-from events.models.event_basic import EventBasic
+from userprofile.models import PersonalProfile
+from events.models.event_details import EventDetail
 from events.models.event_participant_queryset import EventParticipantQuerySet
 
 
@@ -22,24 +23,25 @@ class EventParticipantManager(models.Manager):
         """
             return all registerd participant list of the event
         """
-        return get_queryset().all_participant()
+        return self.get_queryset().all_participant()
 
     def selected_participant(self):
         """
             return selected participant list of the event
         """
-        return get_queryset().selected_participant()
+        return self.get_queryset().selected_participant()
 
     def paid_participant(self):
         """
             return paid participant list of the event
         """
-        return get_queryset().paid_participant()
+        return self.get_queryset().paid_participant()
 
 
-class EventParticipant(EventBasic):
+class EventParticipant(models.Model):
+    event_title = models.ForeignKey(EventDetail, on_delete=models.CASCADE, null=True)
     participant_id = models.ForeignKey(
-        UserProfileBasic,
+        PersonalProfile,
         on_delete=models.CASCADE,
         related_name='event_participant',
         related_query_name='participant'
@@ -53,4 +55,4 @@ class EventParticipant(EventBasic):
     confirmation_text = JSONField(default={})
     participant_status = models.BooleanField(default=True)
 
-    participant = EventParticipantManager()
+    # participant = EventParticipantManager()

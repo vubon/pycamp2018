@@ -14,8 +14,8 @@ class JobApplicantManager(models.Manager):
     def get_queryset(self):
         return JobApplicantQuerySet(self.model, using=self._db)
 
-    def all_applicant(self):
-        return self.get_queryset().all_applicant()
+    def all_applicant(self,id):
+        return self.get_queryset().all_applicant(id)
 
     def selected_applicant(self):
         return self.get_queryset().selected_applicant()

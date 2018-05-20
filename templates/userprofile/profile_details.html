@@ -25,7 +25,7 @@
             <div class="col-md-9">
                 <div class="name-wrapper">
                     <h1 class="name">{{ object.auth.first_name }} {{ object.auth.last_name }}</h1>
-                    <span>Freelance Web Designer</span>
+                    <span>{{ object.personalprofile.interest }}</span>
                 </div>
                 <p>
                     {{ object.personalprofile.about }}
@@ -36,6 +36,7 @@
                     <div class="col-md-3">
                         <div class="personal-details">
                             <strong>{{ object.personalprofile.date_of_birth }}</strong>
+                            <br>
                             <small>BIRTH</small>
                         </div>
                     </div>
@@ -47,19 +48,12 @@
                     </div>
                     <div class="col-md-6">
                         <div class="personal-details">
-                            <strong>{{ object.personalprofile.permamnent_address }}</strong>
+                            <strong>{{ object.personalprofile.permanent_address }}</strong>
+                            <br>
                             <small>Permanent Address</small>
                         </div>
                     </div>
                 </div>
-
-                <ul class="social-icon">
-                    <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                    <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                    <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
-                    <li><a href="#"><i class="fa fa-slack" aria-hidden="true"></i></a></li>
-                    <li><a href="#"><i class="fa fa-dribbble" aria-hidden="true"></i></a></li>
-                </ul>
             </div>
         </div>
     </div>
@@ -359,44 +353,51 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="content-item">
-                            <small>2015 - Present</small>
-                            <h3>Senior Developer</h3>
-                            <h4>Computer & Motor Ltd.</h4>
-
-                            <p>United Kingdom, London</p>
-                        </div>
-                        <!-- .experience-item -->
-                    </div>
-                    <div class="col-md-6">
-                        <div class="content-item">
-                            <small>2012 - 2015</small>
-                            <h3>Webdesigner</h3>
-                            <h4>BizzNiss</h4>
-
-                            <p>United Kingdom, London</p>
+                            <p>{{ object.personalprofile.experience }} years</p>
                         </div>
                         <!-- .experience-item -->
                     </div>
                 </div>
+            </div>
+            <!--.row-->
+        </div>
+    </div>
+    <!-- .container -->
+</section>
+    <!-- Official Current Organization Section -->
+<section class="section-wrapper section-experience">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="section-title"><h2>Current Organization</h2></div>
+            </div>
+            <div class="col-md-9">
                 <div class="row">
-
                     <div class="col-md-6">
                         <div class="content-item">
-                            <small>2012 - 2015</small>
-                            <h3>Web Developer</h3>
-                            <h4>Unique Soft</h4>
-
-                            <p>United Kingdom, London</p>
+                            <p>{{ object.personalprofile.current_organization }} </p>
                         </div>
                         <!-- .experience-item -->
                     </div>
+                </div>
+            </div>
+            <!--.row-->
+        </div>
+    </div>
+    <!-- .container -->
+</section>
+<!-- Official Contact Section -->
+<section class="section-wrapper section-experience">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="section-title"><h2>Official Contact</h2></div>
+            </div>
+            <div class="col-md-9">
+                <div class="row">
                     <div class="col-md-6">
                         <div class="content-item">
-                            <small>2010 - 2012</small>
-                            <h3>Front-end Developer</h3>
-                            <h4>Somsom LLC</h4>
-
-                            <p>United Kingdom, London</p>
+                            <p>{{ object.personalprofile.official_contact }}</p>
                         </div>
                         <!-- .experience-item -->
                     </div>
@@ -420,28 +421,10 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="content-item">
-                            <small>2010 - 2012</small>
-                            <h3>MA Product Design</h3>
-                            <h4>University of California</h4>
-
-                            <p>United Kingdom, London</p>
+                            <p>{{ object.personalprofile.education }}</p>
                         </div>
                         <!-- .experience-item -->
-                        <div class="content-item">
-                            <small>2007 - 2010</small>
-                            <h3>Business marketing course</h3>
-                            <h4>Royal Academy of Business</h4>
 
-                            <p>United Kingdom, London</p>
-                        </div>
-                        <!-- .experience-item -->
-                        <div class="content-item">
-                            <small>2002 - 2006</small>
-                            <h3>BA (Hons) Design</h3>
-                            <h4>University of Michigan</h4>
-
-                            <p>United Kingdom, London</p>
-                        </div>
                         <!-- .experience-item -->
                     </div>
                 </div>
@@ -454,254 +437,6 @@
     <!-- .container -->
 </section>
 <!-- .section-education -->
-
-<section class="section-profile section-wrapper">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3">
-                <div class="section-title"><h2>Marketplace Profile</h2></div>
-            </div>
-
-            <div class="col-md-9">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="profile-item">
-                            <div class="media">
-                                <div class="media-left">
-                                    <a href="#">
-                                        <img class="media-object" src="img/m-logo-studio.png" alt="...">
-                                    </a>
-                                </div>
-                                <div class="media-body">
-                                    <h3 class="media-heading"><a href="#">ENVATO STUDIO</a></h3>
-                                    Seamlessly formulate covalent outsourcing vis-a-vis virtual resources. Distinctively conceptualize.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="profile-item">
-                            <div class="media">
-                                <div class="media-left">
-                                    <a href="#">
-                                        <img class="media-object" src="img/m-logo-freelancer.png" alt="...">
-                                    </a>
-                                </div>
-                                <div class="media-body">
-                                    <h3 class="media-heading"><a href="#">FREELANCER</a></h3>
-                                    Seamlessly formulate covalent outsourcing vis-a-vis virtual resources. Distinctively conceptualize.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="profile-item">
-                            <div class="media">
-                                <div class="media-left">
-                                    <a href="#">
-                                        <img class="media-object" src="img/m-logo-upwork.png" alt="...">
-                                    </a>
-                                </div>
-                                <div class="media-body">
-                                    <h3 class="media-heading"><a href="#">UPWORK</a></h3>
-                                    Seamlessly formulate covalent outsourcing vis-a-vis virtual resources. Distinctively conceptualize.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="profile-item">
-                            <div class="media">
-                                <div class="media-left">
-                                    <a href="#">
-                                        <img class="media-object" src="img/m-logo-peopleperhour.png" alt="...">
-                                    </a>
-                                </div>
-                                <div class="media-body">
-                                    <h3 class="media-heading"><a href="#">PEOPLEPERHOUR</a></h3>
-                                    Seamlessly formulate covalent outsourcing vis-a-vis virtual resources. Distinctively conceptualize.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--.row-->
-            </div>
-
-        </div>
-        <!--.row-->
-    </div>
-    <!-- .container -->
-</section>
-
-
-<section class="review-section section-wrapper">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3">
-                <div class="section-title">
-                    <h2>Recent Reviews</h2>
-                </div>
-            </div>
-
-            <div class="col-md-9">
-                <div id="review">
-                    <div class="item">
-                        <div class="media">
-                            <div class="media-left">
-                                <img src="img/img-testimonial-2.jpg" alt="avatar"/>
-                            </div>
-
-                            <div class="media-body">
-                                <div class="user-name">Sofia Voigt</div>
-                                <!--.user-name-->
-
-                                <div class="rating" data-star_rating="5.0">
-                                    <div class="rating-total">
-                                        <!-- Change rating percentage rate-0, rate-1, rate-2, rate-3, rate-4, rate-5  -->
-                                        <div class="rating-progress rate-5">
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--.rating-->
-                            </div>
-                        </div>
-
-
-                        <div class="review-text">
-                            Seamlessly leverage other's transparent resources after resource maximizing channels.
-                            Continually grow economically sound collaboration and idea-sharing and compelling
-                            technology. Collaboratively unleash.
-                        </div>
-                        <!--.review-text-->
-                    </div>
-                    <!--.item-->
-
-                    <div class="item">
-                        <div class="media">
-                            <div class="media-left">
-                                <img src="img/img-testimonial-1.jpg" alt="avatar"/>
-                            </div>
-
-                            <div class="media-body">
-                                <div class="user-name">Matteo Müller</div>
-                                <!--.user-name-->
-
-                                <div class="rating" data-star_rating="4.0">
-                                    <div class="rating-total">
-                                        <!-- Change rating percentage rate-0, rate-1, rate-2, rate-3, rate-4, rate-5  -->
-                                        <div class="rating-progress rate-4">
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--.rating-->
-                            </div>
-                        </div>
-                        <div class="review-text">
-                            Uniquely target empowered relationships after client-based e-commerce. Energistically morph
-                            worldwide resources for future-proof content. Authoritatively transform granular users
-                            whereas intermandated applications.
-                        </div>
-                        <!--.review-text-->
-                    </div>
-                    <!--.item-->
-
-                    <div class="item">
-                        <div class="media">
-                            <div class="media-left">
-                                <img src="img/img-testimonial-3.jpg" alt="avatar"/>
-                            </div>
-
-                            <div class="media-body">
-                                <div class="user-name">Noel Schulze</div>
-                                <!--.user-name-->
-
-                                <div class="rating" data-star_rating="3.0">
-                                    <div class="rating-total">
-                                        <!-- Change rating percentage rate-0, rate-1, rate-2, rate-3, rate-4, rate-5  -->
-                                        <div class="rating-progress rate-3">
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--.rating-->
-                            </div>
-                        </div>
-                        <div class="review-text">
-                            Enthusiastically mesh an expanded array of infrastructures through distinctive customer
-                            service. Distinctively reintermediate e-business information vis-a-vis excellent networks.
-                            Uniquely fabricate just.
-                        </div>
-                        <!--.review-text-->
-                    </div>
-                    <!--.item-->
-
-                    <div class="item">
-                        <div class="media">
-                            <div class="media-left">
-                                <img src="img/unknown.png" alt="avatar"/>
-                            </div>
-
-                            <div class="media-body">
-                                <div class="user-name">Jason Lehmann</div>
-                                <!--.user-name-->
-
-                                <div class="rating" data-star_rating="2.0">
-                                    <div class="rating-total">
-                                        <!-- Change rating percentage rate-0, rate-1, rate-2, rate-3, rate-4, rate-5  -->
-                                        <div class="rating-progress rate-2">
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--.rating-->
-                            </div>
-                        </div>
-                        <div class="review-text">
-                            Proactively network unique potentialities rather than one-to-one process improvements.
-                            Dynamically leverage existing progressive methods of empowerment rather than efficient
-                            functionalities. Continually.
-                        </div>
-                        <!--.review-text-->
-                    </div>
-                    <!--.item-->
-
-                    <div class="item">
-                        <div class="media">
-                            <div class="media-left">
-                                <img src="img/unknown.png" alt="avatar"/>
-                            </div>
-
-                            <div class="media-body">
-                                <div class="user-name">Jason Lehmann</div>
-                                <!--.user-name-->
-
-                                <div class="rating" data-star_rating="1.0">
-                                    <div class="rating-total">
-                                        <!-- Change rating percentage rate-0, rate-1, rate-2, rate-3, rate-4, rate-5  -->
-                                        <div class="rating-progress rate-1">
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--.rating-->
-                            </div>
-                        </div>
-                        <div class="review-text">
-                            Progressively leverage existing 24/7 paradigms through exceptional process improvements.
-                            Completely revolutionize compelling architectures for team driven partnerships. Quickly
-                            transform focused value.
-                        </div>
-                        <!--.review-text-->
-                    </div>
-                    <!--.item-->
-
-                </div>
-                <!--#review-->
-            </div>
-        </div>
-        <!-- /.row -->
-    </div>
-    <!-- /.container -->
-</section>
-<!-- .review-section -->
 
 <section class="section-contact section-wrapper">
     <div class="container">
@@ -717,21 +452,20 @@
                     <div class="col-md-3">
                         <address>
                             <strong>Address</strong><br>
-                            1355 Market Street, Suite 900<br>
-                            San Francisco, CA 94103
+                            {{ object.personalprofile.current_address }}
 
                         </address>
                     </div>
-                    <div class="col-md-3">
+                    {% comment %}<div class="col-md-3">
                         <address>
                             <strong>Phone Number</strong><br>
                             +61 3 8376 6284
                         </address>
-                    </div>
+                    </div>{% endcomment %}
                     <div class="col-md-3">
                         <address>
                             <strong>Mobile Number</strong><br>
-                            {{ object.auth.phone }}
+                            {{ object.personalprofile.contact }}
                         </address>
                     </div>
                     <div class="col-md-3">

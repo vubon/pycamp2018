@@ -104,30 +104,32 @@ class EventDetailView(LoginRequiredMixin, DetailView):
 
 
 class EventDetailUpdateView(LoginRequiredMixin, UpdateView):
+    model = EventDetail
     form_class = EventDetailForm
     login_url = '/'
     template_name = 'event_templates/event_update.html'
     success_url = '/event/event_list/'
+    print(form_class)
 
     def get_queryset(self):
-        return EventDetail.objects.all()
+        return EventDetail.filter(user=self.request.user)
 
     def get(self, request, slug):
         return render(request, self.template_name, {"event_detail": self.form_class})
 
-    def get_context_data(self, *args, **kwargs):
-        context = super(EventDetailUpdateView, self).get_context_data(*args, **kwargs)
-        return context
+    # def get_context_data(self, *args, **kwargs):
+    #     context = super(EventDetailUpdateView, self).get_context_data(*args, **kwargs)
+    #     return context
 
-    def form_valid(self, form):
-        instance = form.save(commit=True)
-        instance.owner = self.request.user
-        return super(EventCreateView, self).form_valid(form)
-
-    def get_form_kwargs(self):
-        kwargs = super(EventCreateView, self).get_form_kwargs()
-        kwargs['user'] = self.request.user
-        return kwargs
+    # def form_valid(self, form):
+    #     instance = form.save(commit=True)
+    #     instance.owner = self.request.user
+    #     return super(EventCreateView, self).form_valid(form)
+    #
+    # def get_form_kwargs(self):
+    #     kwargs = super(EventCreateView, self).get_form_kwargs()
+    #     kwargs['user'] = self.request.user
+    #     return kwargs
 
 
 class EventDeleteView(DeleteView):

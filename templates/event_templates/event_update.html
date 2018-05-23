@@ -2,57 +2,50 @@
 {% load widget_tweaks %}
 
 {% block content %}
-<a href="{% url 'event_list' %}" class="btn btn-dark btn-lg">Event List</a><br/><!-- temporary button -->
 <div class="row">
     <div class="col-md-12">
         <div class="card">
-            <div class="card-header">
-                Create <strong>event</strong>
-            </div>
             <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
-                {% csrf_token %}
-                <div class="card-block">
-                    {# {{ event_detail.as_p }}#}
-                    {% if event_detail.non_field_errors %}
-                    <div class="alert alert-danger" role="alert">
-                        {% for error in event_detail.non_field_errors %}
-                        {{ error }}
-                        {% endfor %}
-                    </div>
-                    {% endif %}
+            {% csrf_token %}
+            <div class="card-block">
+            {# {{ event_detail.as_p }} #}
+            {% if event_detail.non_field_errors %}
+            <div class="alert alert-danger" role="alert">
+            {% for error in event_detail.non_field_errors %}
+            {{ error }}
+            {% endfor %}
+            </div>
+            {% endif %}
 
-                    <b>Event Details</b>
-                    <hr/>
-
-                    {% for field in event_detail.visible_fields %}
-                    <div class="form-group row">
-                        <label for="{{ field.auto_id }}" class="col-md-3 col-form-label">{{ field.label_tag }}</label>
-                        {% if event_detail.is_bound %}
-                        {% if field.errors %}
-                        {% render_field field class="form-control is-invalid" %}
-                        {% for error in field.errors %}
-                        <div class="invalid-feedback">
-                            {{ error }}
-                        </div>
-                        {% endfor %}
-                        {% else %}
-                        {% render_field field class="form-control is-valid" %}
-                        {% endif %}
-                        {% else %}
-                        <div class="col-md-6">
-                            {% render_field field class="form-control" %}
-                        </div>
-                        {% endif %}
-                    </div><!-- end of event_details form -->
-                    {% endfor %}
-                    <hr/>
-                </div>
-                <div class="card-footer">
-                    <button type="submit" name="save-event" class="btn btn-sm btn-primary" value="update"><i
-                            class="fa fa-dot-circle-o"></i> Save
-                    </button>
-                    <button type="reset" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Reset</button>
-                </div>
+            {% for field in event_detail.visible_fields %}
+            <div class="form-group row">
+            <label for="{{ field.auto_id }}" class="col-md-3 col-form-label">{{ field.label_tag }}</label>
+            {% if event_detail.is_bound %}
+            {% if field.errors %}
+            {% render_field field class="form-control is-invalid" %}
+            {% for error in field.errors %}
+            <div class="invalid-feedback">
+            {{ error }}
+            </div>
+            {% endfor %}
+            {% else %}
+            {% render_field field class="form-control is-valid" %}
+            {% endif %}
+            {% else %}
+            <div class="col-md-6">
+            {% render_field field class="form-control" %}
+            </div>
+            {% endif %}
+            </div><!-- end of event_details form -->
+            {% endfor %}
+            <hr/>
+            <!--</div>-->
+            <div class="card-footer">
+            <button type="submit" name="save-event" class="btn btn-sm btn-primary" value="update"><i
+            class="fa fa-dot-circle-o"></i> Save
+            </button>
+            <button type="reset" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Reset</button>
+            </div>
             </form>
         </div>
     </div>

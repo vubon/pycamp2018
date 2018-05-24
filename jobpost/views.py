@@ -1,4 +1,5 @@
-from django.shortcuts import render,redirect,get_object_or_404
+from django.shortcuts import render,redirect,get_object_or_404,reverse
+from django.http import Http404
 from django.views.generic import (View,TemplateView,
                                 ListView,DetailView,
                                 CreateView,DeleteView,
@@ -21,11 +22,23 @@ def listView(request):
     return render(request,'jobpost/job_post_dashboard.html',{'job_list':JobPostBasic.objects.job_title()})
 
 def detailJobView(request,id):
+    user = request.user
     basic = get_object_or_404(JobPostBasic, id=id)
     detail = get_object_or_404(JobPostDetails,id=id)
-    return render(request,'jobpost/jobpostbasic_detail.html',{'basic':basic,'detail':detail})
+    try:
+        applicant_object = JobApplicant.objects.get_job_applicant(id,user.id)
+        # print("====")
+        # print(applicant_object.job_id)
+        # print(applicant_object.applicant_id)
+        # print(applicant_object.apply_status)
+        # print(basic.id)
+        # print(user.id)
+        status = True
+    except:
+        status = False
+    return render(request,'jobpost/jobpostbasic_detail.html',{'basic':basic,'detail':detail,'status':status})
 
-def createJobView(request):
+def createJobView(request,id):
     user = request.user
     if request.method == 'POST':
         basic_form = JobPostBasicForm(request.POST)
@@ -44,7 +57,7 @@ def createJobView(request):
     else:
         basic_form = JobPostBasicForm()
         detail_form = JobPostDetailsForm()
-    return render(request, 'jobpost/job_post_create.html', {'basic_form': basic_form, 'detail_form': detail_form})
+    return render(request, 'jobpost/job_post_create.html', {'basic_form': basic_form, 'detail_form': detail_form,'user':user})
 
 
 def updateView(request,id):
@@ -93,3 +106,22 @@ def job_applicant(request,id):
     job_app=JobApplicant(applicant=user,job=job)
     job_app.save()
     return redirect('jobpost:index')
+
+def myJobView(request,id):
+    user = request.user
+    job_list = JobPostBasic.objects.my_job(id)
+    all_job = JobPostBasic.objects.job_title()
+    print(job_list)
+    return render(request,'jobpost/my_job_list.html',{'my_job':job_list,'all_job':all_job})
+
+def jobApplyView(request,id):
+    user=request.user
+    # try:
+    #     applicant = JobApplicant.objects.get_job_applicant(id,user.id)
+    #     applicant.update()
+    # except JobApplicant.DoesNotExist:
+    #     job_apply=JobApplicant(applicant=user,job=job,apply_status=True)
+    #     job_apply.save()
+    obj, created = JobApplicant.objects.update_or_create(applicant_id=user.id,job_id=id,apply_status=True)
+    print(obj.apply_status)
+    return redirect('jobpost:detail',id=id)

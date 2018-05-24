@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <h1>MY Job List: </h1>
+    {%for job in my_job%}
+    {{ job.job_title }}
+    <br>
+    {%endfor%}
+    <h1> All JObs : </h1>
+    {% for job in all_job %}
+    {{ job.job_title }}
+    {{ job.organization_id}}
+    {%endfor%}
+
+
+  </body>
+</html>

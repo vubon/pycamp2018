@@ -22,6 +22,10 @@ class JobPostBasicManager(models.Manager):
 
         return self.get_queryset().job_title()
 
+    def my_job(self,id):
+        print(id)
+        return self.get_queryset().my_job(id)
+
 
 class JobPostBasic(models.Model):
     organization = models.ForeignKey(User,on_delete=models.CASCADE)

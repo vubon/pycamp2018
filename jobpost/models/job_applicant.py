@@ -20,11 +20,15 @@ class JobApplicantManager(models.Manager):
     def selected_applicant(self):
         return self.get_queryset().selected_applicant()
 
+    def get_job_applicant(self,j_id,a_id):
+        return self.get_queryset().get_job_applicant(j_id,a_id)
+
 
 class JobApplicant(models.Model):
     job = models.ForeignKey(JobPostBasic,on_delete=models.CASCADE)
     applicant = models.ForeignKey(User,on_delete=models.CASCADE)
     selection_confirmation= models.BooleanField(default=False)
     call_for_interview = models.BooleanField(default=False)
+    apply_status = models.BooleanField(default=False)
 
-    object = JobApplicantManager()
+    objects = JobApplicantManager()

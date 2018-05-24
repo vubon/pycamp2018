@@ -33,12 +33,24 @@
                         <li class="nav-title">
                 Job Profile
             </li>
+            {% if  not userbasic.is_organization %}
             <li class="nav-item nav-dropdown">
-                <a class="nav-link" href="#"><i class="icon-puzzle"></i> Applied</a>
+                <a class="nav-link" href="{% url 'jobpost:index'%}"><i class="icon-puzzle"></i> All Jobs</a>
                 </li>
             <li class="nav-item nav-dropdown">
-                <a class="nav-link" href="#"><i class="icon-star"></i> Wishlist</a>
+                <a class="nav-link" href="#"><i class="icon-star"></i> Applied Jobs</a>
             </li>
+            {%else%}
+            <li class="nav-item nav-dropdown">
+                <a class="nav-link" href="{%url 'jobpost:create' id=userbasic.id%}"><i class="icon-puzzle"></i> Create New Job</a>
+                </li>
+            <li class="nav-item nav-dropdown">
+                <a class="nav-link" href="{% url 'jobpost:myjob' id=basic_user.id %}"><i class="icon-puzzle"></i> My Job Posts</a>
+                </li>
+            <li class="nav-item nav-dropdown">
+                <a class="nav-link" href="#"><i class="icon-puzzle"></i> My Job Applicants</a>
+                </li>
+            {%endif%}
             <li class="divider"></li>
             <li class="nav-title">
                 Extras

@@ -18,8 +18,9 @@ def individual_profile_creation_check(user):
 
 @profile_required()
 def dashboard(request, username):
+    basic_user = request.user
     user = UserProfileBasic.objects.get(auth=request.user)
-    return render(request, 'base/base.html', {'userbasic': user})
+    return render(request, 'base/base.html', {'userbasic': user,'basic_user':basic_user})
 
 
 @login_required(login_url='/signin/')
@@ -162,4 +163,3 @@ class ProfileDetails(DetailView):
 #         # first_name = form.cleaned_data['first_name']
 #         print(form.__dict__)
 #         return render(request, self.template_name, {'form': form})
-

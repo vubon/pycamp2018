@@ -27,12 +27,6 @@ def detailJobView(request,id):
     detail = get_object_or_404(JobPostDetails,id=id)
     try:
         applicant_object = JobApplicant.objects.get_job_applicant(id,user.id)
-        # print("====")
-        # print(applicant_object.job_id)
-        # print(applicant_object.applicant_id)
-        # print(applicant_object.apply_status)
-        # print(basic.id)
-        # print(user.id)
         status = True
     except:
         status = False
@@ -100,28 +94,39 @@ class JobApplicantListView(ListView):
 
 
 
-def job_applicant(request,id):
-    user=request.user
-    job=get_object_or_404(JobPostBasic, id=id)
-    job_app=JobApplicant(applicant=user,job=job)
-    job_app.save()
-    return redirect('jobpost:index')
+# def job_applicant(request,id):
+#     user=request.user
+#     job=get_object_or_404(JobPostBasic, id=id)
+#     job_app=JobApplicant(applicant=user,job=job)
+#     job_app.save()
+#     return redirect('jobpost:index')
 
 def myJobView(request,id):
     user = request.user
     job_list = JobPostBasic.objects.my_job(id)
     all_job = JobPostBasic.objects.job_title()
     print(job_list)
-    return render(request,'jobpost/my_job_list.html',{'my_job':job_list,'all_job':all_job})
+    # return render(request,'jobpost/my_job_list.html',{'my_job':job_list,'all_job':all_job})
+    return render(request,'jobpost/my_job_list.html',{'job_list':job_list,'all_job':all_job})
 
 def jobApplyView(request,id):
     user=request.user
-    # try:
-    #     applicant = JobApplicant.objects.get_job_applicant(id,user.id)
-    #     applicant.update()
-    # except JobApplicant.DoesNotExist:
-    #     job_apply=JobApplicant(applicant=user,job=job,apply_status=True)
-    #     job_apply.save()
     obj, created = JobApplicant.objects.update_or_create(applicant_id=user.id,job_id=id,apply_status=True)
     print(obj.apply_status)
     return redirect('jobpost:detail',id=id)
+
+def myAppliedJob(request):
+    user =request.user
+    applied_job = JobApplicant.objects.get_applied_job(user.id)
+    return render(request, 'jobpost/my_applied_job.html',{'job_list':applied_job})
+
+def myApplicantView(request,id):
+    user = request.user
+    job_list = JobPostBasic.objects.my_job(user.id)
+    print(job_list)
+    return render(request,'jobpost/my_applicant_list.html',{'job_list':job_list})
+
+def myApplicantList(request,id):
+    user = request.user
+    applicant_list = JobApplicant.objects.get_applicant_list(id)
+    return render(request,'jobpost/applicant_list.html',{'applicant_list':applicant_list})

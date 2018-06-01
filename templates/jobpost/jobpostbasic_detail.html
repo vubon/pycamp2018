@@ -33,7 +33,7 @@
             <a href="{% url 'jobpost:edit' id=basic.id %}" class="btn btn-primary">Update</a>
             {% else %}
             {%if  status is False %}
-            <a href="{% url 'jobpost:job_apply' id=basic.id %}" class="btn btn-primary">Apply</a>
+            <a href="{% url 'jobpost:job_apply' id=basic.id %}" onclick="return confirm('Are you sure apply this Job?');" class="btn btn-danger">Apply</a>
             {%endif%}
             {%endif%}
         </div>

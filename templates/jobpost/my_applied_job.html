@@ -27,12 +27,12 @@
          {% for job in job_list %}
     <div class="card">
         <div class="card-header">
-           <h3>{{ job.job_title }}</h3>
+           <h3>{{ job.job.job_title }}</h3>
         </div>
         <div class="card-body">
-            <h5 class="card-title"> Vacancy: {{ job.vacancy }}</h5>
-            <p class="card-text"> Deadline: {{ job.deadline }}</p>
-            <a href="{%url 'jobpost:detail' id=job.id%}" class="btn btn-primary">Details</a>
+            <h5 class="card-title"> Vacancy: {{ job.job.vacancy }}</h5>
+            <p class="card-text"> Deadline: {{ job.job.deadline }}</p>
+            <a href="{%url 'jobpost:detail' id=job.job.id%}" class="btn btn-primary">Details</a>
         </div>
     </div>
         {% endfor %}
@@ -49,17 +49,10 @@
     <title></title>
   </head>
   <body>
-    <h1>MY Job List: </h1>
-    {%for job in my_job%}
-    {{ job.job_title }}
-    <br>
-    {%endfor%}
-    <h1> All JObs : </h1>
-    {% for job in all_job %}
-    {{ job.job_title }}
-    {{ job.organization_id}}
-    {%endfor%}
+    {%for job in job_list%}
+    {{job.job.job_title}}
 
+    {%endfor%}
 
   </body>
 </html> -->

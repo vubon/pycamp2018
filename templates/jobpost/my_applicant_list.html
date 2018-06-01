@@ -1,0 +1,51 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+<div class="container-fluid">
+
+    <!-- started event archive table -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    <i class="fa fa-align-justify"></i> Find Your Applicants According to Your Job Post
+                </div>
+                <div class="card-block">
+                    <table class="table table-bordered table-striped table-sm text-center">
+                        <thead>
+                        <tr>
+                            <th>Job Title</th>
+                            <th>Applicant List</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for job in job_list %}
+                        <tr>
+                            <td><a href="#" class="test-success"><span class="btn text-dark">{{ job.job_title }}</span></a></td>
+                            <td><a href="{% url 'jobpost:applicantlist' id=job.id %}" class="test-success"><span class="btn text-dark">Show Applicants list</span></a></td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+        <!--/.col-->
+    </div>
+    <!-- end event archive table -->
+
+</div>
+<!-- /.conainer-fluid -->
+
+
+<br/><hr/>
+
+{#<ul>#}
+{#{% for obj in obj_list %}#}
+{#    <li>{{ obj }}</li>#}
+{#{% endfor %}#}
+{#</ul>#}
+
+{% endblock %}

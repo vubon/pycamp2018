@@ -23,6 +23,12 @@ class JobApplicantManager(models.Manager):
     def get_job_applicant(self,j_id,a_id):
         return self.get_queryset().get_job_applicant(j_id,a_id)
 
+    def get_applicant_list(self,job_id):
+        return self.get_queryset().get_applicant_list(job_id)
+
+    def get_applied_job(self,user_id):
+        return self.get_queryset().get_applied_job(user_id)
+
 
 class JobApplicant(models.Model):
     job = models.ForeignKey(JobPostBasic,on_delete=models.CASCADE)

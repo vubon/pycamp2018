@@ -17,6 +17,8 @@ def indexView(request):
     return render(request, 'jobpost/job_post_dashboard.html')
 
 def listView(request):
+    user = request.user
+    user_type = UserProfileBasic.objects.get_organization_status(request.user.id)
     return render(request,'jobpost/job_post_dashboard.html',{'job_list':JobPostBasic.objects.get_job_title(),'userbasic':user_type, 'basic_user':user.id})
 
 def detailJobView(request,id):

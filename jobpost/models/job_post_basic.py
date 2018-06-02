@@ -15,16 +15,16 @@ class JobPostBasicManager(models.Manager):
     def get_queryset(self):
         return JobPostQuerySet(self.model, using=self._db)
 
-    def job_title(self):
+    def get_job_title(self):
         """
             Return Job title
         """
 
-        return self.get_queryset().job_title()
+        return self.get_queryset().get_job_title()
 
-    def my_job(self,id):
+    def get_my_job(self,id):
         print(id)
-        return self.get_queryset().my_job(id)
+        return self.get_queryset().get_my_job(id)
 
 
 class JobPostBasic(models.Model):

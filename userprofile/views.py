@@ -18,7 +18,8 @@ def individual_profile_creation_check(user):
 
 @profile_required()
 def dashboard(request, username):
-    basic_user = request.user
+    basic_user = request.user.id
+    print(basic_user)
     user = UserProfileBasic.objects.get(auth=request.user)
     return render(request, 'base/base.html', {'userbasic': user,'basic_user':basic_user})
 

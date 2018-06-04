@@ -60,27 +60,10 @@ class EventTrainerCreateView(LoginRequiredMixin, CreateView):
         return super(EventTrainerCreateView, self).form_valid(form)
 
 
-"""
-# How to use Participants views
-class EventParticipantCreateView(LoginRequiredMixin, CreateView):
-    form_class = EventParticipantForm
-    login_url = '/'
-    template_name = 'event_templates/event_participant.html'
-    success_url = '/event/event_list/'
-
-    def get(self, request):
-        return render(request, self.template_name, {"event_participant": self.form_class})
-
-    def form_valid(self, form):
-        instance = form.save(commit=True)
-        instance.owner = self.request.user
-        return super(EventParticipantCreateView, self).form_valid(form)
-"""
-
-
 class EventListView(LoginRequiredMixin, ListView):
     login_url = '/'
     model = EventDetail
+    paginate_by = 5
     template_name = 'event_templates/event_archive.html'
 
     def get_context_data(self, *args, **kwargs):
@@ -99,7 +82,6 @@ class EventDetailView(LoginRequiredMixin, DetailView):
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
         context['event_trainer'] = EventTrainer.objects.all()
-        context['event_participants'] = EventParticipant.objects.all()
         return context
 
 
@@ -149,4 +131,9 @@ def event_apply(request, slug):
 
 class EventParticipantList(LoginRequiredMixin, ListView):
     model = EventParticipant
+    paginate_by = 10
     template_name = 'event_templates/participant_list.html'
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        return context
